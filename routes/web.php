@@ -43,4 +43,13 @@ Route::get('/config', function () {
       // // or eloquent's original technique
       // $user->roles()->attach($admin->id); // id only
 
+
+      // $user = App\User::find(3);
+      // $teacher = App\Role::find(3);
+      // // role attach alias
+      // $user->attachRole($teacher); // parameter can be an Role object, array, or id
+
+      // // or eloquent's original technique
+      // $user->roles()->attach($teacher->id); // id only
+
 });
