@@ -29,7 +29,7 @@ class HomeController extends Controller
       if($user->hasRole('admin')){
           return view('admins.users.home');
       }else if($user->hasRole('teacher')){
-          return view('teachers.users.home');
+          return redirect('/teacher/user/classroom/create');
       }else{
           return view('students.users.home');
       }
