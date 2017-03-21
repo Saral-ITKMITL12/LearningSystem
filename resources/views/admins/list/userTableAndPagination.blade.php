@@ -45,7 +45,7 @@
         <ul class="pagination" id="paginationStudent"></ul>
       </nav>
     </div>
-    @if(($teachers->lastPage()) >= 1)
+    @if(($students->lastPage()) >= 1)
     <script type="text/javascript">
     $('#paginationStudent').twbsPagination({
       totalPages: {{ $students->lastPage() }},
@@ -127,41 +127,6 @@
         }).done(function(data) {
           $('#adminTable').html(data);
           location.hash = 'showAdminUser?page='+page;
-        }).fail(function() {
-          alert('Posts could not be loaded.');
-        });
-      }
-    });
-    </script>
-    @endif
-  </div>
-</div>
-
-<div class="tab-pane" role="tabpanel" id="trash" aria-labelledby="trash-tab">
-  <div class="bs-example" data-example-id="contextual-table">
-    <br>
-    <table class="table table-striped" id="trashTable">
-      @if(($trashs->lastPage()) ==0)
-      <h4 style="color: #ff4444" class="text-center">ไม่พบข้อมูล</h4>
-      @endif
-    </table>
-    <div class="text-center">
-      <nav aria-label="Page navigation">
-        <ul class="pagination" id="paginationTrash"></ul>
-      </nav>
-    </div>
-    @if(($trashs->lastPage()) >= 1)
-    <script type="text/javascript">
-    $('#paginationTrash').twbsPagination({
-      totalPages: {{ $trashs->lastPage() }},
-      visiblePages: 3,
-      onPageClick: function (event, page) {
-        $.ajax({
-          url: '/admin/trashShow/?page='+page,
-          dataType: 'json',
-        }).done(function(data) {
-          $('#trashTable').html(data);
-          location.hash = 'showTrashUser?page='+page;
         }).fail(function() {
           alert('Posts could not be loaded.');
         });

@@ -2,8 +2,9 @@
 
 @section('content')
 <link href="{{ asset('css/login.css')}}" rel="stylesheet">
+
 <div class="container">
-  <div class="row" style="padding-top: 10%">
+  <div class="row" style="margin-top: 15%;">
     <div class="col-md-4 col-md-offset-2 text-right">
       <h1><span style="color: #fff;">Learning</span> <span style="color: #1CB5E0;">System</span></h1>
       <h4><span style="color: #fff;">Faculty of Information Technology@KMITL</span></h4>

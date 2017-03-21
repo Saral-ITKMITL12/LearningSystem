@@ -27,7 +27,7 @@ class HomeController extends Controller
       $user = Auth::user();
 
       if($user->hasRole('admin')){
-          return redirect('/admin/user/manage/create');
+          return view('admins.users.homeMenu');
       }else if($user->hasRole('teacher')){
           return redirect('/teacher/user/classroom/create');
       }else{

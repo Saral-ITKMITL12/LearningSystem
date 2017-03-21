@@ -29,8 +29,7 @@
 
       <div class="row">
 
-
-        <div class="col-md-11 text-right">
+        <div class="col-md-10 col-md-offset-1 text-right">
           <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#newUser">New User</button>
           <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#importUser">Import User</button>
         </div>
@@ -49,9 +48,6 @@
               </li>
               <li role="presentation" class="">
                 <a href="#admin" role="tab" id="admin-tab" data-toggle="tab" aria-controls="admin" aria-expanded="false">Admin</a>
-              </li>
-              <li role="presentation" class="">
-                <a href="#trash" role="tab" id="trash-tab" data-toggle="tab" aria-controls="trash" aria-expanded="false">Trash</a>
               </li>
               <li role="presentation" class="custom-search-input">
                 <form class="form-inline" action="index.html" method="post">

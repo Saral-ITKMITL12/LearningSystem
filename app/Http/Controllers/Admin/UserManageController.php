@@ -58,7 +58,7 @@ class UserManageController extends Controller
     }
     public function destroy($id)
     {
-      $user = User::onlyTrashed($id);
+      $user = User::find($id);
       $user->forceDelete();
       return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการลบข้อมูล สำเร็จ');
     }

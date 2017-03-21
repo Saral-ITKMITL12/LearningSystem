@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Learning System',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\EntrustCustomServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        React\ReactServiceProvider::class,
 
 
     ],

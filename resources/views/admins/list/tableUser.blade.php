@@ -24,11 +24,10 @@
       </td>
       <td>
         <form class="" action="{{ url('admin/user/manage/'.$user->id) }}" method="post"  onsubmit="return(confirm('คุณต้องการลบใช่หรื่อไม่?'))">
-          {{ method_field('PUT') }}
+          {{ method_field('DELETE') }}
           {{ csrf_field() }}
           <button class="btn btn-danger" type="submit">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-            trash</button>
+            <i class="fa fa-trash" aria-hidden="true"></i></button>
           </form>
         </td>
       </tr>
