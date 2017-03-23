@@ -94,7 +94,7 @@ class CourseManageController extends Controller
           $data = Excel::load($path, function($reader) {})->get();
             $memberArray = array();
             foreach ($data as $key => $value){
-              $memberArray[$key] = $value->email;
+              $memberArray[$key] = $value->stud_id;
             }
             // dd($member);
             $course->member = serialize($memberArray);
@@ -152,5 +152,38 @@ class CourseManageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function courseMember($id)
+    {
+        $course = Course::find($id);
+        $members = unserialize($course->member);
+
+        foreach ($members as $key => $member) {
+          $mem_stid = (int)$member;
+
+          $user = User::where('stud_id','=',$mem_stid)->first();
+
+          $student[$key][0] = $user->stud_id;
+          $student[$key][1] = $user->first_name;
+          $student[$key][2] = $user->last_name;
+          $student[$key][3] = $user->email;
+        }
+
+        $tchMembers= unserialize($course->teach_id);
+
+        foreach ($tchMembers  as $key => $teacher) {
+          $mem_tch = (int)$teacher;
+
+          $user = User::where('id','=',$mem_tch)->first();
+
+          $teachers[$key][0] = $user->stud_id;
+          $teachers[$key][1] = $user->first_name;
+          $teachers[$key][2] = $user->last_name;
+          $teachers[$key][3] = $user->email;
+        }
+
+        
+
     }
 }

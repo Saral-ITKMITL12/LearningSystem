@@ -34,108 +34,16 @@
         <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#newCourse">New Course</button>
     </div>
     <div class="col-md-10 col-md-offset-1">
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading panel-accordion">
-              <h4 class="panel-title accordion-head">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">ป.ตรี ระดับชั้นปีที่ 1 </a>
-                <span class="badge" style="background: #f5f5f5; color: #666">
-                  @if(!empty($courses[1]))
-                  {{ $courses[1]->count()}}
-                  @else 0
-                  @endif</span>
-              </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-              <div class="panel-body">
-                <ul class="list-group">
-                  @if(!empty($courses[1]))
-                  @foreach( $courses[1] as $key => $course)
-                   @if($course->class == 1)
-                  <li class="list-group-item">
-                    {{ $course->code}} {{ $course->name}}
-                    <div class="teacherCourse">
-                      @foreach( $teacherData[1][$key] as $tkey => $tdata)
-                      <p>teacher: <span><a class="teacherName"href="#">{{ $teacherData[1][$key][$tkey][0][0] }} {{ $teacherData[1][$key][$tkey][1][0] }}</a></span></p>
-                      @endforeach
-                    </div>
-                  </li>
-                  @endif
-                  @endforeach
-                  @endunless
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading panel-accordion">
-              <h4 class="panel-title accordion-head">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">ป.ตรี ระดับชั้นปีที่ 2 </a>
-                <span class="badge" style="background: #f5f5f5; color: #666">
-                  @if(!empty($courses[2]))
-                  {{ $courses[2]->count()}}
-                  @else 0
-                  @endif</span>
-              </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-              <div class="panel-body">
-                <ul class="list-group">
-                  @if(!empty($courses[2]))
-                  @foreach( $courses[2] as $key => $course)
-                   @if($course->class == 2)
-                  <li class="list-group-item">
-                    {{ $course->code}} {{ $course->name}}
-                    <div class="teacherCourse">
-                      @foreach( $teacherData[2][$key] as $tkey => $tdata)
-                      <p>teacher: <span><a class="teacherName"href="#">{{ $teacherData[2][$key][$tkey][0][0] }} {{ $teacherData[2][$key][$tkey][1][0] }}</a></span></p>
-                      @endforeach
-                    </div>
-                  </li>
-                  @endif
-                  @endforeach
-                  @endunless
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading panel-accordion">
-              <h4 class="panel-title accordion-head">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">ป.ตรี ระดับชั้นปีที่ 3 </a>
-                <span class="badge" style="background: #f5f5f5; color: #666">
-                  @if(!empty($courses[3]))
-                  {{ $courses[3]->count()}}
-                  @else 0
-                  @endif</span>
-              </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-              <div class="panel-body">
-                <ul class="list-group">
-                  @if(!empty($courses[3]))
-                  @foreach( $courses[3] as $key => $course)
-                   @if($course->class == 3)
-                  <li class="list-group-item">
-                    {{ $course->code}} {{ $course->name}}
-                    <div class="teacherCourse">
-                      @foreach( $teacherData[3][$key] as $tkey => $tdata)
-                      <p>teacher: <span><a class="teacherName"href="#">{{ $teacherData[3][$key][$tkey][0][0] }} {{ $teacherData[3][$key][$tkey][1][0] }}</a></span></p>
-                      @endforeach
-                    </div>
-                  </li>
-                  @endif
-                  @endforeach
-                  @endunless
-                </ul>
-              </div>
-            </div>
-          </div>
-@react_component('boxMenu2', [ 'name' => 'Hue' ])
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0-alpha1/JSXTransformer.js"></script>
+      <div class="panel-group" id="accordion">
+        @include('admins.list.courseList', ['class' => 1])
+        @include('admins.list.courseList', ['class' => 2])
+        @include('admins.list.courseList', ['class' => 3])
+        @include('admins.list.courseList', ['class' => 34])
+        @include('admins.list.courseList', ['class' => 4])
+      </div>
+    </div>
 
-  </div>
-</div>
+
 <!-- Modal Import User -->
 <div class="modal fade" id="newCourse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

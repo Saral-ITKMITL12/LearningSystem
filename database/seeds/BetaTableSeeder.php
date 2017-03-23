@@ -58,7 +58,7 @@ class BetaTableSeeder extends Seeder
 
      for($i = 0; $i < 30; $i++) {
        $user = new App\User();
-       $user->stud_id = $faker->randomNumber(8);
+       $user->stud_id = '560700'.($i+10);
        $user->first_name = $faker->firstName;
        $user->last_name = $faker->lastName;
        $user->email = $user->stud_id.'@kmitl.ac.th';

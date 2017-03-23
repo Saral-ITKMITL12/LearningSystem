@@ -36,6 +36,7 @@ Route::group(['middleware' => ['web']], function() {
     //class
     Route::get('/user/course/create','Admin\CourseManageController@create');
     Route::post('/user/course/','Admin\CourseManageController@store');
+    Route::get('/courseMember/{id}','Admin\CourseManageController@courseMember');
 
   });
 

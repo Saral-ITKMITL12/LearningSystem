@@ -20,8 +20,7 @@
             </div>
           </div>
         </a>
-@react_component('Message', [ 'name' => 'Hue' ])
- @react_component('Message', [ 'title' => 'Hello, World' ], [ 'prerender' => true ])
+
 </div>
 
 @endsection
