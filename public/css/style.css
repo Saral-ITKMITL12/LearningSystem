@@ -8,20 +8,41 @@
   border-radius: 10px;
   overflow: hidden;
   margin: 5px 0;
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-position: right center;
+}
+.box-color:hover {
+  background-position: left center; /* change the direction of the change here */
+}
+.box-color:hover .circle-4{
+    background: linear-gradient(60deg,  #00dede  0%,#bb6dec 200%);
+}
+.box-color:hover .box-text{
+  font-size: 38px;
 }
 .box-icon {
   position: absolute;
   left: 30%;
   top: 5%;
+  opacity: 1;
+}
+.fa-cog {
+  color: red;
 }
 .box-text {
   position: relative;
   left: 20px;
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 .box-suptext {
-  position: relative;
+  position: absolute;
   left: 0px;
+  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-size: 13px;
+  bottom: 0px;
 }
 .box-color p{
   margin-left: 23px;
@@ -31,8 +52,8 @@
 	border-radius: 50%;
 	width: 250px;
 	height: 250px;
-   background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
-  left: 50%;
+   background: linear-gradient(135deg,  #00dede  0%,#bb6dec 200%);
+  right: -80px;
   top: -40%;
 }
 
@@ -61,9 +82,12 @@
 	border-radius: 50%;
 	width: 130px;
 	height: 130px;
-  background-color: #06dade;
+  /*background-color: #06dade;*/
   left: 20px;
   top: 20px;
+  opacity: 1;
+  transition: 0.5s;
+  background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
 }
 .panel-accordion {
    background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
@@ -82,3 +106,54 @@
 .teacherName {
     color:#FF8800;
 }
+
+.btn-1 {
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+}
+
+.btn-2 {
+  background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+}
+
+.btn-3 {
+  background-image: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.btn-4 {
+  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+
+.btn-5 {
+  background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
+}
+
+.btn-ani:hover {
+  background-position: right center; /* change the direction of the change here */
+}
+
+.btn-ani {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px 60px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  /*box-shadow: 0 0 20px #eee;*/
+  border-radius: 10px;
+ }
+ .btn-ani-login {
+   font-size: 1em;
+   padding: 15px 60px;
+ }
+
+ .btn-ani-login:hover {
+   color: #f0f0f0;
+ }
+
+ .nonetran {
+   transition: none;
+   text-decoration: none;
+ }

@@ -26,28 +26,25 @@ class UserManageController extends Controller
 
     public function create()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(10);
         $data['users'] = $users;
 
         $students = User::whereHas('roles', function ($query) {
                    $query->where('name', '=', 'student');
-        })->paginate(5);
+        })->paginate(10);
         $data['students'] = $students;
 
         $teachers = User::whereHas('roles', function ($query) {
                    $query->where('name', '=', 'teacher');
-        })->paginate(5);
+        })->paginate(10);
         $data['teachers'] = $teachers;
 
         $admins = User::whereHas('roles', function ($query) {
                    $query->where('name', '=', 'admin');
-        })->paginate(5);
+        })->paginate(10);
         $data['admins'] = $admins;
 
-        $trashs = User::onlyTrashed()->paginate(5);
-        $data['trashs'] = $trashs;
-
-        return view('admins.users.home', $data);
+        return view('admins.users.manageUser', $data);
     }
 
     public function softDelete($id)
@@ -134,10 +131,10 @@ class UserManageController extends Controller
           $user->password = bcrypt($request['password']);
           $user->save();
 
-          if($request['role']!=3){
-            $user_role = Role::find($request['role']);
-            $user->attachRole($user_role);
-          }
+
+          $user_role = Role::find($request['role']);
+          $user->attachRole($user_role);
+
 
           return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินเพิ่มข้อมูล '.$request['first_name'].' '.$request['last_name'].' สำเร็จ');
 
@@ -146,12 +143,12 @@ class UserManageController extends Controller
         public function userShow()
         {
 
-          $users = User::paginate(5);
+          $users = User::paginate(10);
 
           $data['users'] = $users;
 
 
-          return \Response::json(view('admins.list.tableUser', $data)->render());
+          return \Response::json(view('admins.list.manageUserList', $data)->render());
 
         }
 
@@ -160,13 +157,13 @@ class UserManageController extends Controller
 
           $students = User::whereHas('roles', function ($query) {
                      $query->where('name', '=', 'student');
-          })->paginate(5);
+          })->paginate(10);
 
           $data['users'] = $students;
-          $data['students'] = $students;
 
 
-          return \Response::json(view('admins.list.tableUser', $data)->render());
+
+          return \Response::json(view('admins.list.manageUserList', $data)->render());
 
         }
 
@@ -175,12 +172,12 @@ class UserManageController extends Controller
 
           $teachers = User::whereHas('roles', function ($query) {
                      $query->where('name', '=', 'teacher');
-          })->paginate(5);
+          })->paginate(10);
 
           $data['users'] = $teachers;
-          $data['teachers'] = $teachers;
 
-          return \Response::json(view('admins.list.tableUser', $data)->render());
+
+          return \Response::json(view('admins.list.manageUserList', $data)->render());
 
         }
 
@@ -189,26 +186,31 @@ class UserManageController extends Controller
 
           $admins = User::whereHas('roles', function ($query) {
                      $query->where('name', '=', 'admin');
-          })->paginate(5);
+          })->paginate(10);
 
           $data['users'] = $admins;
-          $data['admins'] = $admins;
 
-          return \Response::json(view('admins.list.tableUser', $data)->render());
 
-        }
-
-        public function trashShow()
-        {
-
-          $trashs = User::onlyTrashed()->paginate(5);
-
-          $data['users'] = $trashs;
-          $data['trashs'] = $trashs;
-
-          return \Response::json(view('admins.list.tableUserTrash', $data)->render());
+          return \Response::json(view('admins.list.manageUserList', $data)->render());
 
         }
+
+
+        // public function searchUser(Request $request)
+        // {
+        //   $keyword = $request['keyword'];
+        //   $users = User::where('stud_id', 'LIKE', '%'.$keyword.'%')
+        //   ->orWhere('first_name', 'LIKE', '%'.$keyword.'%')
+        //   ->orWhere('last_name', 'LIKE', '%'.$keyword.'%')
+        //   ->orWhere('email', 'LIKE', '%'.$keyword.'%')->paginate(10);
+        //
+        //   $data['users'] = $users;
+        //   $data['name'] = 'search';
+        //   $data['url'] = '/admin/search/';
+        //   $data['class'] = 'active in';
+        //
+        //   return \Response::json(view('admins.list.manageUserList', $data)->render());
+        // }
 
 
 }

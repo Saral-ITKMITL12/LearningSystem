@@ -94,7 +94,7 @@ class CourseManageController extends Controller
           $data = Excel::load($path, function($reader) {})->get();
             $memberArray = array();
             foreach ($data as $key => $value){
-              $memberArray[$key] = $value->stud_id;
+              $memberArray[$key] = (int)$value->stud_id;
             }
             // dd($member);
             $course->member = serialize($memberArray);
@@ -140,7 +140,23 @@ class CourseManageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+        $members = unserialize($course->member);
+
+        $count = collect($members)->count();
+
+        $users = $request['student'];
+
+        foreach ($users as $key => $user) {
+            $members[$count+$key] = (int)$request['student'][$key];
+        }
+
+
+        $course->member = serialize($members);
+
+        $course->save();
+
+        return redirect('/admin/courseMember/'.$id)->with('flash_notice','ดำเนินการ สำเร็จ');
     }
 
     /**
@@ -158,32 +174,42 @@ class CourseManageController extends Controller
     {
         $course = Course::find($id);
         $members = unserialize($course->member);
-
-        foreach ($members as $key => $member) {
-          $mem_stid = (int)$member;
-
-          $user = User::where('stud_id','=',$mem_stid)->first();
-
-          $student[$key][0] = $user->stud_id;
-          $student[$key][1] = $user->first_name;
-          $student[$key][2] = $user->last_name;
-          $student[$key][3] = $user->email;
-        }
-
         $tchMembers= unserialize($course->teach_id);
 
-        foreach ($tchMembers  as $key => $teacher) {
-          $mem_tch = (int)$teacher;
+        $user = User::whereIn('stud_id', $members)->orWhereIn('id', $tchMembers)->paginate(10);
 
-          $user = User::where('id','=',$mem_tch)->first();
+        $userSearch = User::whereHas('roles', function ($query) {
+                   $query->where('name', '=', 'student');
+        })->whereNotIn('stud_id', $members)->get();
 
-          $teachers[$key][0] = $user->stud_id;
-          $teachers[$key][1] = $user->first_name;
-          $teachers[$key][2] = $user->last_name;
-          $teachers[$key][3] = $user->email;
-        }
 
-        
+        $data['users'] = $user;
+        $data['userSearch'] = $userSearch;
+        $data['course'] = $course;
+        $data['id'] = $id;
+
+        return view('admins.users.courseUser', $data);
+    }
+
+    public function courseMemberPaginate($id)
+    {
+
+      $course = Course::find($id);
+      $members = unserialize($course->member);
+      $tchMembers= unserialize($course->teach_id);
+
+      $user = User::whereIn('stud_id', $members)->orWhereIn('id', $tchMembers)->paginate(10);
+
+      $data['users'] = $user;
+      $data['course'] = $course;
+
+      return \Response::json(view('admins.list.courseUserList', $data)->render());
+
+    }
+
+    public function cours($id)
+    {
+
 
     }
 }

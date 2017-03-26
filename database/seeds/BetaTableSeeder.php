@@ -56,7 +56,7 @@ class BetaTableSeeder extends Seeder
        $user->attachRole($teacher);
      }
 
-     for($i = 0; $i < 30; $i++) {
+     for($i = 0; $i < 60; $i++) {
        $user = new App\User();
        $user->stud_id = '560700'.($i+10);
        $user->first_name = $faker->firstName;

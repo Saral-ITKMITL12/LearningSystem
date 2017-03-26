@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Auth;
-use App\Classroom;
+use App\Course;
 
-class ClassRoomController extends Controller
+class CourseMangeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class ClassRoomController extends Controller
     //  }
     public function index()
     {
-        dd('asdasd');
+        //
     }
 
     /**
@@ -31,7 +31,30 @@ class ClassRoomController extends Controller
      */
     public function create()
     {
-        return view('teachers.users.classroom');
+        $user = Auth::user();
+        $user_id = $user->id;
+
+        $courses = Course::all();
+
+        $teach_c = [];
+
+        foreach ($courses as $ckey => $course) {
+           $teachers = unserialize($course->teach_id);
+
+           foreach ($teachers as $tkey => $teacher) {
+              if($teacher == $user_id){
+                $tc_count = count($teach_c);
+                $teach_c[$tc_count] = $course->id;
+
+
+              }
+           }
+        }
+
+        $userCourse = Course::whereIn('id',$teach_c)->get();
+        $data['courses'] = $userCourse;
+
+        return view('teachers.users.home', $data);
     }
 
     /**
@@ -90,15 +113,4 @@ class ClassRoomController extends Controller
         //
     }
 
-    public function newClass(Request $request)
-    {
-        $classroom = new Classroom();
-
-        $classroom->user_id = Auth::user()->id;
-        $classroom->name = $request['className'];
-        $classroom->descript = $request['descript'];
-        $classroom->key = $request['keyRoom'];
-
-        dd($classroom);
-    }
 }

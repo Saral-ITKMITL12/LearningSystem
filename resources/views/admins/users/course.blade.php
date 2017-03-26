@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="{{ asset('css/bootstrap-chosen.css') }}">
 
-
+<section class="features">
 <div class="container">
   <div class="col-md-6 col-md-offset-3">
     @unless(empty(session('flash_notice')))
@@ -117,5 +117,6 @@
       no_results_text: "Oops, nothing found!",
     });
   </script>
+</section>
 
   @endsection

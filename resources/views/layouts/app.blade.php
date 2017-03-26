@@ -13,12 +13,13 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/new-age.css')}}" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="{{ asset('css/landing-page.css')}}" rel="stylesheet">
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/button.css')}}" rel="stylesheet">
 
+    <link rel="shortcut icon" href="/favicon.jpg" type="image/x-icon">
+    <link rel="icon" href="/favicon.jpg" type="image/x-icon">
 
     <!-- Custom Fonts -->
     <link href="{{ asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
@@ -36,61 +37,59 @@
 <body>
 
   <div id="app">
-      <nav class="navbar navbar-default navbar-static-top">
-          <div class="container">
-              <div class="navbar-header">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="{{ url('/home' )}}">Learning System</a>
+            </div>
 
-                  <!-- Collapsed Hamburger -->
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                      <span class="sr-only">Toggle Navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                  <!-- Branding Image -->
-                  <a class="navbar-brand" href="{{ url('/home') }}">
-                      <span style="color: #666;">Learning</span> <span style="color: #1CB5E0;">System</span>
-                  </a>
-              </div>
+              <!-- Right Side Of Navbar -->
+              <ul class="nav navbar-nav navbar-right">
+                  <!-- Authentication Links -->
+                  @if (Auth::guest())
+                      <li><a href="{{ route('login') }}">Login</a></li>
+                  @else
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                              {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                              @if(Auth::user()->hasRole('teacher'))
+                                (TEACHER)
+                              @elseif(Auth::user()->hasRole('admin'))
+                                (ADMIN)
+                              @elseif(Auth::user()->hasRole('student'))
+                                (STUDENT)
+                              @endif
+                              <span class="caret"></span>
+                          </a>
 
-              <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                  <!-- Left Side Of Navbar -->
-                  <ul class="nav navbar-nav">
-                      &nbsp;
-                  </ul>
+                          <ul class="dropdown-menu" role="menu">
+                              <li>
+                                  <a href="{{ route('logout') }}"
+                                      onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                      Logout
+                                  </a>
 
-                  <!-- Right Side Of Navbar -->
-                  <ul class="nav navbar-nav navbar-right">
-                      <!-- Authentication Links -->
-                      @if (Auth::guest())
-                          <li><a href="{{ route('login') }}">Login</a></li>
-                          <li><a href="{{ route('register') }}">Register</a></li>
-                      @else
-                          <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                  {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <span class="caret"></span>
-                              </a>
-
-                              <ul class="dropdown-menu" role="menu">
-                                  <li>
-                                      <a href="{{ route('logout') }}"
-                                          onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                          Logout
-                                      </a>
-
-                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                          {{ csrf_field() }}
-                                      </form>
-                                  </li>
-                              </ul>
-                          </li>
-                      @endif
-                  </ul>
-              </div>
-          </div>
-      </nav>
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                      {{ csrf_field() }}
+                                  </form>
+                              </li>
+                          </ul>
+                      </li>
+                  @endif
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
 
       @yield('content')
   </div>
