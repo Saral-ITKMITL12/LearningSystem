@@ -207,9 +207,5 @@ class CourseManageController extends Controller
 
     }
 
-    public function cours($id)
-    {
 
-
-    }
 }

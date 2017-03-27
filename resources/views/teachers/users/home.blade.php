@@ -4,22 +4,24 @@
 
 <section class="features">
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-heading">ClassRoom Page</div>
 
-        <div class="panel-body">
+  @foreach($courses as $key => $course)
 
-          <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal">New Class</button>
+    @include('teachers.list.menuBox',[
+    'url' => '/teacher/user/course/intocourse/'.$course->id,
+    'name' => $course->code.': '.$course->name,
+    'colorClass' => 'box-color box-color-'.'green',
+    'cir1Class' => 'circle-1 circle-1-'.'green',
+    'cir2Class' => 'circle-2 circle-2-'.'green',
+    'cir3Class' => 'circle-3 circle-3-'.'green',
+    'cir4Class' => 'circle-4 circle-4-'.'green',
+    'textClass' => 'box-text2',
+    'iconClass' => "fa fa-book fa-2x fa-inverse",
+    'menuDes' => '',
+    ])
+  @endforeach
 
-        </div><!-- body panel -->
-      </div>
-    </div>
-  </div>
 </div>
-
-
 </section>
 
 @endsection

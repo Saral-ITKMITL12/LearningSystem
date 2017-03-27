@@ -1,6 +1,4 @@
 .box-color{
-  position: relative;
-   background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
   width: 100%;
   max-height: 180px;
   min-height: 150px;
@@ -8,16 +6,11 @@
   border-radius: 10px;
   overflow: hidden;
   margin: 5px 0;
-  transition: 0.5s;
-  background-size: 200% auto;
-  background-position: right center;
 }
 .box-color:hover {
   background-position: left center; /* change the direction of the change here */
 }
-.box-color:hover .circle-4{
-    background: linear-gradient(60deg,  #00dede  0%,#bb6dec 200%);
-}
+
 .box-color:hover .box-text{
   font-size: 38px;
 }
@@ -25,16 +18,25 @@
   position: absolute;
   left: 30%;
   top: 5%;
-  opacity: 1;
+  opacity: 0.5;
 }
 .fa-cog {
   color: red;
 }
 .box-text {
+  width: 80%;
   position: relative;
   left: 20px;
   text-decoration: none;
   transition: 0.5s;
+}
+
+.box-text2 {
+  width: 80%;
+  position: relative;
+  left: 20px;
+  text-decoration: none;
+  font-size: 20px;
 }
 
 .box-suptext {
@@ -47,48 +49,9 @@
 .box-color p{
   margin-left: 23px;
 }
-.circle-1 {
-  position: absolute;
-	border-radius: 50%;
-	width: 250px;
-	height: 250px;
-   background: linear-gradient(135deg,  #00dede  0%,#bb6dec 200%);
-  right: -80px;
-  top: -40%;
-}
 
-.circle-2 {
-  position: absolute;
-	border-radius: 50%;
-	width: 210px;
-	height: 210px;
-  background-color: #55abe5;
-  left: 20px;
-  top: 20px;
-}
 
-.circle-3 {
-  position: absolute;
-	border-radius: 50%;
-	width: 170px;
-	height: 170px;
-  background-color: #3abae2;
-  left: 20px;
-  top: 20px;
-}
 
-.circle-4 {
-  position: absolute;
-	border-radius: 50%;
-	width: 130px;
-	height: 130px;
-  /*background-color: #06dade;*/
-  left: 20px;
-  top: 20px;
-  opacity: 1;
-  transition: 0.5s;
-  background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
-}
 .panel-accordion {
    background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
   border-color: #f4f4f4;
@@ -131,6 +94,7 @@
   background-position: right center; /* change the direction of the change here */
 }
 
+
 .btn-ani {
   flex: 1 1 auto;
   margin: 10px;
@@ -148,6 +112,11 @@
    font-size: 1em;
    padding: 15px 60px;
  }
+ .btn-ani-menu {
+   font-size: 1em;
+   padding: 10px 20px;
+   color: #fff;
+ }
 
  .btn-ani-login:hover {
    color: #f0f0f0;
@@ -157,3 +126,160 @@
    transition: none;
    text-decoration: none;
  }
+
+
+.box-color-blue {
+   background: linear-gradient(135deg,  #bb6dec  0%,#00dede 100%);
+   transition: 0.5s;
+   background-size: 200% auto;
+   background-position: right center;
+   position: relative;
+ }
+
+.box-color-pink {
+  background: linear-gradient(135deg,  #FC354C  0%, #cbad6d 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-position: right center;
+  position: relative;
+}
+
+.box-color-green {
+  background: linear-gradient(135deg,  #34e89e  0%, #02AAB0 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-position: right center;
+  position: relative;
+}
+
+.box-color-purple {
+  background: linear-gradient(135deg,  #360033  0%,#0b8793 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-position: right center;
+  position: relative;
+}
+.box-color-orange{
+  background: linear-gradient(135deg, #DE6262   0%, #F9D423 100%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-position: right center;
+  position: relative;
+}
+
+.circle-1 {
+  position: absolute;
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+  right: -80px;
+  top: -40%;
+}
+.circle-1-blue {
+   background: linear-gradient(135deg,  #bb6dec  0%,#00dede 100%);
+}
+.circle-1-pink {
+  background: linear-gradient(135deg,  #cbad6d  0%, #FC354C 100%);
+}
+.circle-1-green {
+   background: linear-gradient(135deg,  #02AAB0  0%, #34e89e 100%);
+}
+.circle-1-purple {
+  background: linear-gradient(135deg,  #0b8793  0%,#360033  100%);
+}
+.circle-1-orange{
+   background: linear-gradient(135deg,   #F9D423 0%, #DE6262 100%);
+}
+
+.circle-2 {
+  position: absolute;
+	border-radius: 50%;
+	width: 210px;
+	height: 210px;
+  left: 20px;
+  top: 20px;
+}
+
+.circle-2-blue {
+   background: linear-gradient(0deg,  #bb6dec  0%,#00dede 100%);
+}
+.circle-2-pink {
+  background: linear-gradient(0deg,  #cbad6d  0%, #FC354C 200%);
+}
+.circle-2-green {
+   background: linear-gradient(0deg,  #02AAB0  0%, #34e89e 200%);
+}
+.circle-2-purple {
+  background: linear-gradient(0deg,  #0b8793  0%,#360033  200%);
+}
+.circle-2-orange{
+   background: linear-gradient(0deg,   #F9D423 0%, #DE6262 200%);
+}
+
+.circle-3 {
+  position: absolute;
+	border-radius: 50%;
+	width: 170px;
+	height: 170px;
+  left: 20px;
+  top: 20px;
+}
+.circle-3-blue {
+   background: #59c3db;
+}
+.circle-3-pink {
+  background: #d8a587;
+}
+.circle-3-green {
+   background: #5ee1b8;
+}
+.circle-3-purple {
+  background: #24889b;
+}
+.circle-3-orange{
+   background: #f6c933;
+}
+
+.circle-4 {
+  position: absolute;
+	border-radius: 50%;
+	width: 130px;
+	height: 130px;
+  /*background-color: #06dade;*/
+  left: 20px;
+  top: 20px;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.circle-4-blue {
+   background: linear-gradient(135deg,  #00dede  0%,#bb6dec 100%);
+}
+.circle-4-pink {
+  background: linear-gradient(0deg,  #cbad6d  0%, #FC354C 200%);
+}
+.circle-4-green {
+   background: linear-gradient(0deg,  #02AAB0  0%, #34e89e 200%);
+}
+.circle-4-purple {
+  background: linear-gradient(0deg,  #0b8793  0%,#360033  200%);
+}
+.circle-4-orange{
+   background: linear-gradient(0deg,   #F9D423 0%, #DE6262 200%);
+}
+
+.box-color:hover .circle-4-blue {
+    background: linear-gradient(135deg,  #00dede  0%,#bb6dec 200%);
+}
+.box-color:hover .circle-4-pink {
+    background: linear-gradient(135deg,  #cbad6d  0%, #FC354C 200%);
+}
+.box-color:hover .circle-4-green {
+    background: linear-gradient(135deg,  #02AAB0  0%, #34e89e 200%);
+}
+.box-color:hover .circle-4-purple {
+    background: linear-gradient(135deg,  #0b8793  0%,#360033  200%);
+}
+.box-color:hover .circle-4-orange {
+    background: linear-gradient(135deg,   #F9D423 0%, #DE6262 200%);
+}

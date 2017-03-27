@@ -7,8 +7,9 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\Course;
+use App\User;
 
-class CourseMangeController extends Controller
+class CourseManageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +20,12 @@ class CourseMangeController extends Controller
     //  {
     //     $this->middleware('role:teacher');
     //  }
+
+    public function __construct()
+    {
+       $this->middleware('role:teacher');
+    }
+    
     public function index()
     {
         //
@@ -99,7 +106,23 @@ class CourseMangeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $course = Course::find($id);
+      $members = unserialize($course->member);
+
+      $count = collect($members)->count();
+
+      $users = $request['student'];
+
+      foreach ($users as $key => $user) {
+          $members[$count+$key] = (int)$request['student'][$key];
+      }
+
+
+      $course->member = serialize($members);
+
+      $course->save();
+
+      return redirect('/teacher/user/userCouseManage/'.$id)->with('flash_notice','ดำเนินการ สำเร็จ');
     }
 
     /**
@@ -111,6 +134,53 @@ class CourseMangeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function intoCourse($id)
+    {
+      $course = Course::find($id);
+
+      $data['course'] = $course;
+      $data['id'] = $id;
+
+      return view('teachers.users.intoCourseMenu', $data);
+    }
+
+    public function userCouseManage($id)
+    {
+      $course = Course::find($id);
+      $members = unserialize($course->member);
+      $tchMembers= unserialize($course->teach_id);
+
+      $user = User::whereIn('stud_id', $members)->orWhereIn('id', $tchMembers)->paginate(10);
+
+      $userSearch = User::whereHas('roles', function ($query) {
+                 $query->where('name', '=', 'student');
+      })->whereNotIn('stud_id', $members)->get();
+
+
+      $data['users'] = $user;
+      $data['userSearch'] = $userSearch;
+      $data['course'] = $course;
+      $data['id'] = $id;
+
+      return view('teachers.users.userCourseManage', $data);
+    }
+
+
+    public function courseMemberPaginate($id)
+    {
+
+      $course = Course::find($id);
+      $members = unserialize($course->member);
+
+      $user = User::whereIn('stud_id', $members)->paginate(10);
+
+      $data['users'] = $user;
+      $data['course'] = $course;
+
+      return \Response::json(view('teachers.list.courseUserList', $data)->render());
+
     }
 
 }
