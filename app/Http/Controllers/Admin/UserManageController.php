@@ -51,13 +51,17 @@ class UserManageController extends Controller
     {
       $user = User::find($id);
       $user->delete();
-      return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการลบข้อมูล สำเร็จ ข้อมูลจะถูกสำรองไว้ที่ Trash');
+      return redirect('admin/user/manage/create')->with([
+        'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
     }
     public function destroy($id)
     {
       $user = User::find($id);
       $user->forceDelete();
-      return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการลบข้อมูล สำเร็จ');
+      return redirect('admin/user/manage/create')->with([
+        'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
     }
 
     public function restore($id)
@@ -65,7 +69,9 @@ class UserManageController extends Controller
       dd('restore');
       $user = User::onlyTrashed($id);
       $user->restore();
-      return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการกู้ข้อมูล สำเร็จ');
+      return redirect('admin/user/manage/create')->with([
+        'flash_notice' =>'System: ดำเนินการกู้ข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
     }
 
     public function importStdExcel(Request $request)
@@ -86,9 +92,13 @@ class UserManageController extends Controller
               $std->attachRole($std_role);
             }
           }
-          return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการนำเข้าข้อมูลนักศึกษา สำเร็จ');
+          return redirect('admin/user/manage/create')->with([
+            'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+             'flash_type' => 'success ']);
         }
-        return redirect('admin/user/manage/create')->with('flash_fail','เกิดข้อผิดพลาด กรุณาเลือกไฟล์ก่อนทำรายการ');
+        return redirect('admin/user/manage/create')->with([
+          'flash_notice' =>'System: เกิดข้อผิดพลาด กรุณาเลือกไฟล์เพื่อทำรายการต่อ',
+           'flash_type' => 'danger']);
       }
 
       public function importTeachExcel(Request $request)
@@ -109,9 +119,13 @@ class UserManageController extends Controller
                 $teacher->attachRole($tch_role);
               }
             }
-            return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินการนำเข้าข้อมูลผู้สอน สำเร็จ');
+            return redirect('admin/user/manage/create')->with([
+              'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+               'flash_type' => 'success ']);
           }
-          return redirect('admin/user/manage/create')->with('flash_fail','เกิดข้อผิดพลาด กรุณาเลือกไฟล์ก่อนทำรายการ');
+          return redirect('admin/user/manage/create')->with([
+            'flash_notice' =>'System: เกิดข้อผิดพลาด กรุณาเลือกไฟล์เพื่อทำรายการต่อ',
+             'flash_type' => 'danger']);
         }
 
         public function newUser(Request $request)
@@ -136,7 +150,9 @@ class UserManageController extends Controller
           $user->attachRole($user_role);
 
 
-          return redirect('admin/user/manage/create')->with('flash_notice','ดำเนินเพิ่มข้อมูล '.$request['first_name'].' '.$request['last_name'].' สำเร็จ');
+          return redirect('admin/user/manage/create')->with([
+            'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+             'flash_type' => 'success ']);
 
         }
 

@@ -7,7 +7,7 @@
 
   @foreach($courses as $key => $course)
 
-    @include('teachers.list.menuBox',[
+    @include('layouts.menuBox',[
     'url' => '/teacher/user/course/intocourse/'.$course->id,
     'name' => $course->code.': '.$course->name,
     'colorClass' => 'box-color box-color-'.'green',
@@ -22,6 +22,9 @@
   @endforeach
 
 </div>
+
+
+
 </section>
 
 @endsection

@@ -13,14 +13,13 @@
   <div class="container">
 
 
-
     <div class="text-right">
       <h4>{{ $course->code}}: {{ $course->name}}</h4>
       <br>
     </div>
 
       @foreach($quizs as $key => $quiz)
-      @include('teachers.list.quizEditList',[
+      @include('teachers.list.quizQuestionEditList',[
       'id' => $quiz->id,
       'quiz' => $quiz,
       ])
@@ -29,8 +28,6 @@
 
 
   </div>
-
-
 
 </section>
 

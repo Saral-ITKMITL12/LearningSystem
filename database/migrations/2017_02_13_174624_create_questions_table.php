@@ -16,8 +16,8 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('quiz_id');
-            $table->string('descript');
-            $table->string('url');
+            $table->longText('descript');
+            $table->string('image');
             $table->timestamps();
         });
     }

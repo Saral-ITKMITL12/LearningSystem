@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Quiz;
+use App\Course;
 
 class QuizManageController extends Controller
 {
@@ -32,8 +33,8 @@ class QuizManageController extends Controller
      */
     public function create($id)
     {
-        $data['id'] = $id;
-        return view('teachers.users.quizCreate', $data);
+        // $data['id'] = $id;
+        // return view('teachers.users.quizCreate', $data);
     }
 
     /**
@@ -52,7 +53,10 @@ class QuizManageController extends Controller
         $quiz->expire_date = $request['expire'];
 
         $quiz->save();
-        dd($request['start'] < $request['expire']);
+
+        return redirect('teacher/user/quiz/'.$id)->with([
+          'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+           'flash_type' => 'success ']);
     }
 
     /**
@@ -63,11 +67,14 @@ class QuizManageController extends Controller
      */
     public function show($id)
     {
-        $quiz = Quiz::where('course_id',$id)->get();
+        $course = Course::find($id);
+        $quizs = Quiz::where('course_id',$id)->get();
 
 
-        // dd($quiz);
-        return view('teachers.users.quizEdit');
+
+        $data['quizs'] = $quizs;
+        $data['course'] = $course;
+        return view('teachers.users.quizEdit', $data);
     }
 
     /**
@@ -78,7 +85,7 @@ class QuizManageController extends Controller
      */
     public function edit($id)
     {
-        //
+        //dd('edit');
     }
 
     /**
@@ -90,7 +97,19 @@ class QuizManageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $quiz = Quiz::find($id);
+        $id = $quiz->course_id;
+
+        $quiz->name = $request['name'];
+        $quiz->descript = $request['descript'];
+        $quiz->start_date = $request['start'];
+        $quiz->expire_date = $request['expire'];
+
+        $quiz->save();
+
+        return redirect('teacher/user/quiz/'.$id)->with([
+          'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
+           'flash_type' => 'success ']);
     }
 
     /**
@@ -101,6 +120,12 @@ class QuizManageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quiz = Quiz::find($id);
+        $id = $quiz->course_id;
+        $quiz->forceDelete();
+
+        return redirect('teacher/user/quiz/'.$id)->with([
+          'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
+           'flash_type' => 'success ']);
     }
 }

@@ -99,6 +99,19 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap-notify.min.js')}}"></script>
+
+    @unless(empty(session('flash_notice')))
+    <script type="text/javascript">
+    $.notify(
+      {
+        message: "{{ Session::get('flash_notice') }}"
+      },{
+        type: "{{ Session::get('flash_type') }}"
+      }
+    );
+    </script>
+    @endunless
 
 </body>
 

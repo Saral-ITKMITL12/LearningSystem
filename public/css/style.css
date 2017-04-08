@@ -283,3 +283,74 @@
 .box-color:hover .circle-4-orange {
     background: linear-gradient(135deg,   #F9D423 0%, #DE6262 200%);
 }
+
+
+.quizBox {
+  position: relative;
+  border-radius: 10px;
+  min-height: 200px;
+   background: linear-gradient(135deg,  #bb6dec  0%,#00dede 200%);
+   padding: 10px;
+   margin: 5px;
+}
+
+.quizBox:hover {
+  background: linear-gradient(135deg,#00dede    0%,#bb6dec 100%);
+}
+
+.textHeadBox {
+  color: #fff;
+}
+
+.textSupBox {
+  color: #fff;
+  font-size: 13px;
+}
+.textSupBoxGray {
+  color: #666;
+  font-size: 13px;
+}
+
+.text-tran {
+  background: transparent;
+  border: none;
+}
+
+.icon-big {
+  position: absolute;
+  font-size: 10em;
+  right: 0px;
+  opacity: 0.5;
+  color: #666;
+}
+
+.badge-green {
+  background: #8AC249;
+  color: #fff;
+}
+.badge-red {
+  background: #F34235;
+  color: #fff;
+}
+
+img.modalimg {
+  width: 150px;
+}
+
+.segmented-red {
+  width: 100%;
+  color: #F34235;
+}
+
+.segmented-green{
+  width: 100%;
+  color: #8AC249;
+}
+
+a.quizbox {
+  color: #fff;
+}
+
+a.quizbox:hover {
+  color: #666;
+}

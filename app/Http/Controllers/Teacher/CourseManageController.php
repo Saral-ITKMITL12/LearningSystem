@@ -25,7 +25,7 @@ class CourseManageController extends Controller
     {
        $this->middleware('role:teacher');
     }
-    
+
     public function index()
     {
         //
@@ -122,7 +122,9 @@ class CourseManageController extends Controller
 
       $course->save();
 
-      return redirect('/teacher/user/userCouseManage/'.$id)->with('flash_notice','ดำเนินการ สำเร็จ');
+      return redirect('/teacher/user/userCouseManage/'.$id)->with([
+        'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
     }
 
     /**

@@ -4,40 +4,34 @@
 <section class="features">
 <div class="container">
 
-    <a href="admin/user/course/create" class="nonetran">
-      <div class="col-md-4">
-        <div class="box-color">
-          <div class="circle-1">
-            <div class="circle-2">
-              <div class="circle-3">
-                <div class="circle-4">
-                  <h1 class="box-icon"><i class="fa fa-book fa-2x fa-inverse"></i></h1>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h1 class="box-text"><b>COURSE</b></h1>
-          <p class="box-suptext">create class and manage</p>
-        </div>
-      </div>
-    </a>
-    <a href="admin/user/manage/create" class="nonetran">
-      <div class="col-md-4">
-        <div class="box-color">
-          <div class="circle-1">
-            <div class="circle-2">
-              <div class="circle-3">
-                <div class="circle-4">
-                  <h1 class="box-icon"><i class="fa fa-user fa-2x fa-inverse"></i></h1>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h1 class="box-text"><b>USER</b></h1>
-          <p class="box-suptext ">create user and manage</p>
-        </div>
-      </div>
-    </a>
+
+
+    @include('layouts.menuBox',[
+    'url' => 'admin/user/course/create',
+    'name' => 'COURSE',
+    'colorClass' => 'box-color box-color-'.'green',
+    'cir1Class' => 'circle-1 circle-1-'.'green',
+    'cir2Class' => 'circle-2 circle-2-'.'green',
+    'cir3Class' => 'circle-3 circle-3-'.'green',
+    'cir4Class' => 'circle-4 circle-4-'.'green',
+    'textClass' => 'box-text',
+    'iconClass' => "fa fa-book fa-2x fa-inverse",
+    'menuDes' => 'create course and manage'
+    ])
+
+    @include('layouts.menuBox',[
+    'url' => 'admin/user/manage/create',
+    'name' => 'USER',
+    'colorClass' => 'box-color box-color-'.'orange',
+    'cir1Class' => 'circle-1 circle-1-'.'orange',
+    'cir2Class' => 'circle-2 circle-2-'.'orange',
+    'cir3Class' => 'circle-3 circle-3-'.'orange',
+    'cir4Class' => 'circle-4 circle-4-'.'orange',
+    'textClass' => 'box-text',
+    'iconClass' => "fa fa-user fa-2x fa-inverse",
+    'menuDes' => 'create user and manage'
+    ])
+
 </div>
 </section>
   @endsection

@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+
+use App\Course;
+
+
 class BetaTableSeeder extends Seeder
 {
     /**
@@ -49,7 +53,7 @@ class BetaTableSeeder extends Seeder
        $user->stud_id = '00000000';
        $user->first_name = $faker->firstName;
        $user->last_name = $faker->lastName;
-       $user->email = $user->first_name.'@kmitl.ac.th';
+       $user->email = 'teacher'.$i.'@it.kmitl.ac.th';
        $user->password = bcrypt('123456');
        $user->save();
 
@@ -61,12 +65,42 @@ class BetaTableSeeder extends Seeder
        $user->stud_id = '560700'.($i+10);
        $user->first_name = $faker->firstName;
        $user->last_name = $faker->lastName;
-       $user->email = $user->stud_id.'@kmitl.ac.th';
+       $user->email = $user->stud_id.'@it.kmitl.ac.th';
        $user->password = bcrypt('123456');
        $user->save();
 
        $user->attachRole($std);
      }
+
+
+     $class = ['1','2','3','34','4'];
+
+     $t_id[0] = ['2','3','4'];
+     $t_id[1] = ['5','6','7'];
+     $t_id[2] = ['8','9','10'];
+     $t_id[3] = ['11','12','13'];
+     $t_id[4] = ['14','15','16'];
+
+     foreach ($class as $key => $value) {
+       for ($i=0; $i < 6 ; $i++) {
+
+         $course = new Course();
+         $course->code = $faker->randomNumber(8);
+         $course->name = $faker->text(50);
+         $course->class = $value;
+         $course->descript = $faker->text(50);
+
+         $course->teach_id = serialize($t_id[$key]);
+
+         $memberArray = array();
+         for ($x=10; $x <50 ; $x++) {
+           $memberArray[$x-10] = (int)('560700'.$x);
+         }
+         $course->member = serialize($memberArray);
+         $course->save();
+       }
+     }
+
 
     }
 }

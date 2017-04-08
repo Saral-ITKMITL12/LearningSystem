@@ -100,9 +100,13 @@ class CourseManageController extends Controller
             $course->member = serialize($memberArray);
           $course->save();
 
-          return redirect('admin/user/course/create')->with('flash_notice','ดำเนินการ สำเร็จ');
+          return redirect('admin/user/course/create')->with([
+            'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+             'flash_type' => 'success ']);
         }else{
-            return redirect('admin/user/course/create')->with('flash_fail','เกิดข้อผิดพลาด กรุณาเลือกไฟล์ก่อนทำรายการ');
+            return redirect('admin/user/course/create')->with([
+              'flash_notice' =>'System: เกิดข้อผิดพลาด กรุณาเลือกไฟล์เพื่อดำเนินการต่อ',
+               'flash_type' => 'danger ']);
         }
 
 
@@ -156,7 +160,9 @@ class CourseManageController extends Controller
 
         $course->save();
 
-        return redirect('/admin/courseMember/'.$id)->with('flash_notice','ดำเนินการ สำเร็จ');
+        return redirect('/admin/courseMember/'.$id)->with([
+          'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
+           'flash_type' => 'success ']);
     }
 
     /**

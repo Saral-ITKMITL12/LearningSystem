@@ -58,10 +58,30 @@ Route::group(['middleware' => ['web']], function() {
     Route::put('/course/addUser/{id}','Teacher\CourseManageController@update');
 
     // quiz
-    Route::get('/user/quiz/create/{id}','Teacher\QuizManageController@create');
+    // Route::get('/user/quiz/create/{id}','Teacher\QuizManageController@create');
     Route::post('/user/quiz/{id}','Teacher\QuizManageController@store');
     Route::get('/user/quiz/{id}','Teacher\QuizManageController@show');
+    Route::get('/user/quiz/{id}/edit','Teacher\QuizManageController@edit');
+    Route::get('/user/quiz/delete/{id}','Teacher\QuizManageController@destroy');
+    Route::put('/user/quiz/{id}','Teacher\QuizManageController@update');
+
+    // Question
+    Route::get('/quiz/question/index/{id}','Teacher\QuestionManageController@index');
+    Route::get('/quiz/question/{id}','Teacher\QuestionManageController@show');
+
+    Route::post('/quiz/question/trueStore/{id}','Teacher\QuestionManageController@trueStore');
+    Route::put('/quiz/question/trueStore/{id}','Teacher\QuestionManageController@trueStoreUpdate');
+
+    Route::post('/quiz/question/fourStore/{id}','Teacher\QuestionManageController@fourStore');
+    Route::put('/quiz/question/fourStore/{id}','Teacher\QuestionManageController@fourStoreUpdate');
+
+    Route::delete('/quiz/question/{id}','Teacher\QuestionManageController@destroy');
 
   });
 
 });
+
+
+// Route::get('/test', function() {
+//   return view('test.segmented');
+// });

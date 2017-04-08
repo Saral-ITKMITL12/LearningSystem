@@ -8,25 +8,7 @@
 
 <section class="features">
 <div class="container">
-  <div class="col-md-6 col-md-offset-3">
-    @unless(empty(session('flash_notice')))
-    <div class="alert alert-success alert-dismissible fade in" role="alert" id="success-alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>{{ Session::get('flash_notice') }}</strong>
-    </div>
-    @endunless
 
-    @unless(empty(session('flash_fail')))
-    <div class="alert alert-danger alert-dismissible fade in" role="alert" id="success-alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <strong>{{ Session::get('flash_fail') }}</strong>
-    </div>
-    @endunless
-  </div>
     <div class="col-md-5  col-md-offset-1">
         <h2>Course categories</h2>
     </div>
@@ -79,7 +61,7 @@
               <div class="form-group">
                     <select required data-placeholder="teacher" class="chosen-select" multiple="" style="width: 350px; display: none;" name="teacher[]" id="teacher">
                       @foreach($teachers as $teacher)
-                      <option value="{{ $teacher->id }}">{{ $teacher->email}}</option>
+                      <option value="{{ $teacher->id }}">{{ $teacher->first_name}} {{ $teacher->last_name}}({{ $teacher->email}})</option>
                       @endforeach
                     </select>
               </div>
@@ -102,9 +84,6 @@
   <script src="{{ asset('js/chosen.jquery.js') }}" type="text/javascript"></script>
   <script type="text/javascript">
 
-    $("#success-alert").fadeTo(2000, 500).slideUp(1000, function(){
-      $("#success-alert").slideUp(3000);
-    });
 
     $('#teacher').chosen({
       width: "100%",
