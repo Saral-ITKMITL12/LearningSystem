@@ -70,10 +70,13 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/quiz/question/{id}','Teacher\QuestionManageController@show');
 
     Route::post('/quiz/question/trueStore/{id}','Teacher\QuestionManageController@trueStore');
-    Route::put('/quiz/question/trueStore/{id}','Teacher\QuestionManageController@trueStoreUpdate');
+    Route::put('/quiz/question/trueStore/{id}','Teacher\QuestionManageController@trueUpdate');
 
     Route::post('/quiz/question/fourStore/{id}','Teacher\QuestionManageController@fourStore');
-    Route::put('/quiz/question/fourStore/{id}','Teacher\QuestionManageController@fourStoreUpdate');
+    Route::put('/quiz/question/fourStore/{id}','Teacher\QuestionManageController@fourUpdate');
+
+    Route::post('/quiz/question/wordStore/{id}','Teacher\QuestionManageController@wordStore');
+    Route::put('/quiz/question/wordStore/{id}','Teacher\QuestionManageController@wordUpdate');
 
     Route::delete('/quiz/question/{id}','Teacher\QuestionManageController@destroy');
 

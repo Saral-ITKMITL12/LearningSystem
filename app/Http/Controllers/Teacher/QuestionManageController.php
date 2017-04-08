@@ -189,7 +189,7 @@ class QuestionManageController extends Controller
 
     }
 
-    public function trueStoreUpdate(Request $request, $id)
+    public function trueUpdate(Request $request, $id)
     {
 
 
@@ -300,7 +300,7 @@ class QuestionManageController extends Controller
 
     }
 
-    public function fourStoreUpdate(Request $request, $id)
+    public function fourUpdate(Request $request, $id)
     {
 
 
@@ -344,6 +344,116 @@ class QuestionManageController extends Controller
       $descript['type'] = 'fourChoice';
       $descript['answer'] = $request['answer'];
       $descript['answerRadio'] = $request['answerRadio'];
+
+
+      $question->descript = serialize($descript);
+
+      $question->save();
+
+      return redirect('/teacher/quiz/question/'.$id)->with([
+        'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
+
+
+
+    }
+
+    public function wordStore(Request $request, $id)
+    {
+
+
+      $question = new Question();
+
+      if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+        $image= array('image' => $request['image']);
+        // Tell the validator that this file should be an image
+        $rules = array(
+          'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
+        );
+
+        // Now pass the input and rules into the validator
+        $validator = Validator::make($image, $rules);
+
+        if ($validator->fails()){
+          return redirect('/teacher/quiz/question/'.$id)->with([
+            'flash_notice' =>'System: เกิดข้อผิดพลาด File type: jpeg,jpg,png,gif,  Maximum: 10000kb',
+             'flash_type' => 'danger ']);
+        }else{
+          $time = intval(microtime(true)*1000);
+
+          $path = $request->file('image')->getRealPath();
+          $mime_type = $request->file('image')->getClientOriginalExtension();
+          $destination_path = 'image/' . 'quiz'.$id.'/'. $time . '.' . $mime_type;
+          \Storage::put($destination_path, file_get_contents($path));
+
+          $question->image = $destination_path;
+        }
+
+      }else{
+        $question->image = '';
+      }
+
+      $descript['ask'] = $request['ask'];
+      $descript['type'] = 'word';
+      $descript['answer'] = $request['answer'];
+
+      $question->quiz_id = $id;
+      $question->descript = serialize($descript);
+
+      $question->save();
+
+
+      return redirect('/teacher/quiz/question/'.$id)->with([
+        'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
+         'flash_type' => 'success ']);
+
+
+    }
+
+    public function wordUpdate(Request $request, $id)
+    {
+
+
+      $question = Question::find($id);
+      $id = $question->quiz_id;
+
+
+      if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+        $image= array('image' => $request['image']);
+        // Tell the validator that this file should be an image
+        $rules = array(
+          'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000' // max 10000kb
+        );
+
+        // Now pass the input and rules into the validator
+        $validator = Validator::make($image, $rules);
+
+        if ($validator->fails()){
+          return redirect('/teacher/quiz/question/'.$id)->with([
+            'flash_notice' =>'System: เกิดข้อผิดพลาด File type: jpeg,jpg,png,gif,  Maximum: 10000kb',
+             'flash_type' => 'danger ']);
+        }else{
+          $time = intval(microtime(true)*1000);
+
+          $path = $request->file('image')->getRealPath();
+          $mime_type = $request->file('image')->getClientOriginalExtension();
+          $destination_path = 'image/' . 'quiz'.$id.'/'. $time . '.' . $mime_type;
+          \Storage::put($destination_path, file_get_contents($path));
+
+          $question->image = $destination_path;
+        }
+
+      }else if($request['delete'] == "delete"){
+          $question->image = '';
+      }
+
+
+
+      $descript['ask'] = $request['ask'];
+      $descript['type'] = 'word';
+      $descript['answer'] = $request['answer'];
 
 
       $question->descript = serialize($descript);

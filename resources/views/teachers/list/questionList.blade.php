@@ -31,11 +31,15 @@
             @endif
           </li>
           @endforeach
+        @elseif($question->descript['type'] == 'word')
+        <li class="list-group-item">
+          {{ $question->descript['answer'] }}
+            <span class="badge badge-green"><i class="fa fa-check" aria-hidden="true"></i></span>
+        </li>
         @endif
       </div>
 
     </div>
-
     <div class="modal fade" tabindex="-1" role="dialog" id="quizbox-{{ $key}}">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -47,6 +51,8 @@
           <form action="{{ url('/teacher/quiz/question/trueStore/'.$question->id) }}" method="post" enctype="multipart/form-data">
         @elseif($question->descript['type'] == 'fourChoice')
           <form action="{{ url('/teacher/quiz/question/fourStore/'.$question->id) }}" method="post" enctype="multipart/form-data">
+        @elseif($question->descript['type'] == 'word')
+          <form action="{{ url('/teacher/quiz/question/wordStore/'.$question->id) }}" method="post" enctype="multipart/form-data">
         @endif
         {{ method_field('PUT') }}
           {{ csrf_field() }}
@@ -76,6 +82,8 @@
                 @include('teachers.form.trueRadio')
               @elseif($question->descript['type'] == 'fourChoice')
                 @include('teachers.form.fourRadio')
+              @elseif($question->descript['type'] == 'word')
+                @include('teachers.form.word')
               @endif
 
 
