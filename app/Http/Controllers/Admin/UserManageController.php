@@ -53,7 +53,7 @@ class UserManageController extends Controller
       $user->delete();
       return redirect('admin/user/manage/create')->with([
         'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
-         'flash_type' => 'success ']);
+         'flash_type' => 'success']);
     }
     public function destroy($id)
     {
@@ -61,7 +61,7 @@ class UserManageController extends Controller
       $user->forceDelete();
       return redirect('admin/user/manage/create')->with([
         'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
-         'flash_type' => 'success ']);
+         'flash_type' => 'success']);
     }
 
     public function restore($id)
@@ -71,7 +71,7 @@ class UserManageController extends Controller
       $user->restore();
       return redirect('admin/user/manage/create')->with([
         'flash_notice' =>'System: ดำเนินการกู้ข้อมูล สำเร็จ',
-         'flash_type' => 'success ']);
+         'flash_type' => 'success']);
     }
 
     public function importStdExcel(Request $request)
@@ -94,7 +94,7 @@ class UserManageController extends Controller
           }
           return redirect('admin/user/manage/create')->with([
             'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
-             'flash_type' => 'success ']);
+             'flash_type' => 'success']);
         }
         return redirect('admin/user/manage/create')->with([
           'flash_notice' =>'System: เกิดข้อผิดพลาด กรุณาเลือกไฟล์เพื่อทำรายการต่อ',

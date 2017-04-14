@@ -178,6 +178,7 @@ class QuestionManageController extends Controller
 
       $question->quiz_id = $id;
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answer']);
 
       $question->save();
 
@@ -234,6 +235,7 @@ class QuestionManageController extends Controller
 
 
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answer']);
 
       $question->save();
 
@@ -289,6 +291,7 @@ class QuestionManageController extends Controller
 
       $question->quiz_id = $id;
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answerRadio']);
 
       $question->save();
 
@@ -347,6 +350,7 @@ class QuestionManageController extends Controller
 
 
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answerRadio']);
 
       $question->save();
 
@@ -400,6 +404,7 @@ class QuestionManageController extends Controller
 
       $question->quiz_id = $id;
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answer']);
 
       $question->save();
 
@@ -457,6 +462,7 @@ class QuestionManageController extends Controller
 
 
       $question->descript = serialize($descript);
+      $question->answer = serialize($request['answer']);
 
       $question->save();
 

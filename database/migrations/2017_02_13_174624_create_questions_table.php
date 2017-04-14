@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->string('quiz_id');
             $table->longText('descript');
             $table->string('image');
+            $table->string('answer');
             $table->timestamps();
         });
     }

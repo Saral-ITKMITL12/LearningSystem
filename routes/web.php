@@ -82,9 +82,21 @@ Route::group(['middleware' => ['web']], function() {
 
   });
 
+  Route::group(['prefix' => 'student', 'middleware' => ['role:student']], function () {
+
+
+    Route::get('/user/course/create','Student\CourseController@create');
+    Route::get('/user/course/intocourse/{id}','Student\CourseController@intoCourse');
+
+    Route::get('/user/quiz/{id}','Student\QuizController@index');
+    Route::get('/user/doQuiz/{id}','Student\QuizController@doQuiz');
+    Route::post('/user/doQuizPage/{id}','Student\QuizController@doQuizPage');
+
+    Route::patch('/user/doQuizUpdate/{id}','Student\QuizController@quizUpdate');
+    Route::get('/user/doQuizUpdateFail','Student\QuizController@quizUpdateFail');
+
+
+  });
+
+
 });
-
-
-// Route::get('/test', function() {
-//   return view('test.segmented');
-// });

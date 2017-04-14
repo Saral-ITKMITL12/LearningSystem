@@ -5,11 +5,11 @@
 <section class="features">
 <div class="container">
 
-  @foreach($courses as $key => $course)
+  @foreach($quizs as $key => $quiz)
 
     @include('layouts.menuBox',[
-    'url' => '/student/user/course/intocourse/'.$course->id,
-    'name' => $course->code.': '.$course->name,
+    'url' => '/student/user/doQuiz/'.$quiz->id,
+    'name' => $quiz->name,
     'colorClass' => 'box-color box-color-'.'blue',
     'cir1Class' => 'circle-1 circle-1-'.'blue',
     'cir2Class' => 'circle-2 circle-2-'.'blue',
