@@ -468,7 +468,7 @@ class QuestionManageController extends Controller
 
       return redirect('/teacher/quiz/question/'.$id)->with([
         'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
-         'flash_type' => 'success ']);
+         'flash_type' => 'success']);
 
 
 

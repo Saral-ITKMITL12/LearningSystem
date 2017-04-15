@@ -422,6 +422,22 @@ a.quizbox:hover {
   letter-spacing: 10px;
 }
 
+.btn-bulgreen {
+  width: 200px;
+  height: 50px;
+  color: #FFFFFF;
+  background: #23D160;
+  /*border: 3px solid #01D1B2;*/
+  transition: 0.5s;
+  border-radius: 100px;
+  margin: 10px;
+}
+
+.btn-bulgreen:hover {
+  color: #FFFFFF;
+  letter-spacing: 10px;
+}
+
 
 .text {
   border: none;
@@ -475,7 +491,7 @@ img.showQuiz {
   right: 5%;
   bottom: 5%;
   left: 5%;
-  z-index: 75;
+  z-index: 1050;
   text-align: center;
   display: flex;
   justify-content: center;

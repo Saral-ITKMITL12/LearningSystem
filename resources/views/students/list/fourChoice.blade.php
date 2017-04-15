@@ -19,8 +19,17 @@
 
 <div class="col-md-12 answerBox">
 @foreach($value->descript['answer'] as $qkey => $answer)
-<div class="segmented-control segmented-deepblue" style="width: 100%;">
-    <input type="radio" name="answer[]" id="answer-{{ $qkey }}">
+<div class="segmented-control segmented-bulma" style="width: 100%;">
+    <input type="radio" name="answer" id="answer-{{ $qkey }}" value="{{ $choices[$qkey] }}"
+    @for($i = 1; $i <= $paginates->lastPage(); $i++)
+      @foreach($resArray as $rkey => $resValue)
+      @if($resValue['id'] == $value->id)
+      @if($resValue['answer'] == $choices[$qkey])
+          checked=""
+        @endif
+      @endif
+    @endforeach
+    @endfor>
     <label for="answer-{{ $qkey }}" data-value="{{ $choices[$qkey]}}) {{ $answer }}">
       {{ $choices[$qkey]}}) {{ $answer }}
     </label>
@@ -30,7 +39,7 @@
 
 <div class="col-md-12 text-center saveNext">
   <button type="button" class="btn btn-gibson" name="button" id="saveQuiz" data-token="{{ csrf_token() }}">save</button>
-  <button type="button" class="btn btn-gibson" name="button" id="finishQuiz">Finish</button>
+  <button type="button" class="btn btn-bulgreen" name="button" id="finishQuiz">Finish</button>
 </div>
 
 
@@ -47,13 +56,24 @@ if($("input[name='answer']").is(":checked")){
     data: {
       _method: 'patch',
       _token :token,
-      questionType: 'trueOrfalse',
+      questionType: 'fourChioce',
       answer: $("input[name='answer']:checked").val(),
       page: '{{ $paginates->currentPage() }}',
     },
     dataType: 'json',
   }).done(function(data) {
     $('#saveSucces').html(data);
+    $.ajax({
+      url: '/student/user/doQuizPageHead/{{ $quiz_id }}',
+      type: 'POST',
+      data: {
+        _method: 'post',
+         _token :token,
+       },
+      dataType: 'json',
+    }).done(function(data) {
+      $('#paginateHead').html(data);
+    });
   }).fail(function() {
     alert('error');
   });

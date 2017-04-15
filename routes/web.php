@@ -91,6 +91,7 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/user/quiz/{id}','Student\QuizController@index');
     Route::get('/user/doQuiz/{id}','Student\QuizController@doQuiz');
     Route::post('/user/doQuizPage/{id}','Student\QuizController@doQuizPage');
+    Route::post('/user/doQuizPageHead/{id}','Student\QuizController@doQuizPageHead');
 
     Route::patch('/user/doQuizUpdate/{id}','Student\QuizController@quizUpdate');
     Route::get('/user/doQuizUpdateFail','Student\QuizController@quizUpdateFail');

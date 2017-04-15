@@ -6,4 +6,5 @@ $.notify(
     type: "{{ $flash_type }}"
   }
 );
+
 </script>

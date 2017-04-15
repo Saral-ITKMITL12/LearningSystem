@@ -12,6 +12,7 @@ use App\User;
 use App\Quiz;
 use App\Question;
 use App\Response;
+use Carbon\Carbon;
 
 class QuizController extends Controller
 {
@@ -22,9 +23,8 @@ class QuizController extends Controller
      */
     public function index($id)
     {
-        
-        $quizs = Quiz::where('course_id', $id)->get();
-
+        $now = Carbon::now();
+        $quizs = Quiz::where([['course_id', $id], ['start_date', '<', $now],  ['expire_date', '>', $now]])->get();
         $data['quizs'] = $quizs;
 
         return view('students.users.quizIndex', $data);
@@ -154,8 +154,8 @@ class QuizController extends Controller
 
       }
       $response->save();
-      return \Response::json(view('layouts.flashJS',
-      ['flash_notice' =>'System: ดำเนินการบันทึกข้อมูล สำเร็จ'.$request['questionType'].' '.$request['page'].' '.$request['answer'] ,
+      return \Response::json(view('layouts.QuizFlashJS',
+      ['flash_notice' =>'System: ดำเนินการบันทึกข้อมูล สำเร็จ',
       'flash_type' => 'success'])->render());
 
     }
@@ -196,7 +196,41 @@ class QuizController extends Controller
       $data['choices'] = ['A', 'B', 'C', 'D'];
       $data['resArray'] = $resArray;
       $data['resAry'] = $resAry;
+      $data['quiz_id'] = $id;
 
       return \Response::json(view('students.list.questionPage', $data)->render());
+    }
+
+
+    public function doQuizPageHead($id)
+    {
+      $quiz = Quiz::find($id);
+      $paginates = Question::where('quiz_id', $id)->paginate(1);
+      $questions = Question::where('quiz_id', $id)->get();
+
+      $user_id = Auth::user()->id;
+
+      foreach ($paginates as $key => $paginate) {
+        $paginate->descript = unserialize($paginate->descript);
+      }
+
+      $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
+
+      foreach ($response as $key => $value) {
+          $resAry[] = $value->question_id;
+          $resArray[$key]['id'] = $value->question_id;
+          $resArray[$key]['answer'] = $value->answer;
+      }
+
+      $data['quiz'] = $quiz;
+      $data['questions'] = $questions;
+      $data['paginates'] = $paginates;
+      $data['choices'] = ['A', 'B', 'C', 'D'];
+      $data['resArray'] = $resArray;
+      $data['resAry'] = $resAry;
+      $data['quiz_id'] = $id;
+
+
+      return \Response::json(view('students.list.paginateHead', $data)->render());
     }
 }

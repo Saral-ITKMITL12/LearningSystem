@@ -46,7 +46,7 @@
   </div>
   <div class="col-md-12 text-center saveNext">
     <button type="button" class="btn btn-gibson" name="button" id="saveQuiz" data-token="{{ csrf_token() }}">save</button>
-    <button type="button" class="btn btn-gibson" name="button" id="finishQuiz">Finish</button>
+    <button type="button" class="btn btn-bulgreen" name="button" id="finishQuiz">Finish</button>
   </div>
 
 
@@ -70,6 +70,18 @@ $("#saveQuiz").on("click", function(){
       dataType: 'json',
     }).done(function(data) {
       $('#saveSucces').html(data);
+
+      $.ajax({
+        url: '/student/user/doQuizPageHead/{{ $quiz_id }}',
+        type: 'POST',
+        data: {
+          _method: 'post',
+           _token :token,
+         },
+        dataType: 'json',
+      }).done(function(data) {
+        $('#paginateHead').html(data);
+      });
 
     }).fail(function() {
       alert('error');

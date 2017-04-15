@@ -10,11 +10,10 @@
 <section class="features">
 <div class="container">
 
-  <div class="col-md-10 col-md-offset-1 text-center">
+  <div class="col-md-10 col-md-offset-1 text-center" id="paginateHead">
       @if ($paginates->lastPage() > 1)
       <ul class="pagination">
           @for ($i = 1; $i <= $paginates->lastPage(); $i++)
-          <meta name="_token" content="{{ csrf_token() }}" />
               <a class="btn btn-round
                     @if(in_array($questions[$i-1]->id, $resAry))
                     btn-save
@@ -55,8 +54,9 @@
       @include('students.list.trueChoice')
     @elseif($value->descript['type'] == 'fourChoice' )
       @include('students.list.fourChoice')
+    @elseif($value->descript['type'] == 'word' )
+      @include('students.list.wordChoice',['quiz_id' => $quiz_id])
     @endif
-
 
     @endforeach
   </div>
