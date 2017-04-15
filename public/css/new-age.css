@@ -3,6 +3,14 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+ @font-face {
+   font-family: 'RSU';
+   src: url('/fonts/RSU.ttf');
+   unicode-range: U+0E00–U+0E7F;
+   font-weight: normal;
+    font-style: normal;
+ }
+
 .heading-font {
   font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
   font-weight: 200;
@@ -16,13 +24,16 @@
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+
+
 html,
 body {
   height: 100%;
   width: 100%;
 }
 body {
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: 'Muli', 'Helvetica', 'RSU', 'Arial', 'sans-serif';
+  font-size: 16px;
 }
 a {
   -webkit-transition: all 0.35s;
@@ -37,8 +48,7 @@ a:focus {
   text-decoration: none;
 }
 hr {
-  max-width: 100px;
-  margin: 25px auto 0;
+  margin: 25px 20px;
   border-width: 1px;
   border-color: rgba(34, 34, 34, 0.1);
 }

@@ -16,7 +16,7 @@
           @for ($i = 1; $i <= $paginates->lastPage(); $i++)
           <meta name="_token" content="{{ csrf_token() }}" />
               <a class="btn btn-round
-                    @if(in_array($questions[$i-1]->id, $resArray))
+                    @if(in_array($questions[$i-1]->id, $resAry))
                     btn-save
                     @else
                     btn-unsave
@@ -45,6 +45,7 @@
           @endfor
       </ul>
       @endif
+      <hr class="menuList">
   </div>
 
   <div class="col-md-10 col-md-offset-1 form-horizontal" id="componentQuestion">

@@ -115,7 +115,9 @@ class QuizController extends Controller
       $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
 
       foreach ($response as $key => $value) {
-          $resArray[] = $value->question_id;
+          $resAry[] = $value->question_id;
+          $resArray[$key]['id'] = $value->question_id;
+          $resArray[$key]['answer'] = $value->answer;
       }
 
       $data['quiz'] = $quiz;
@@ -123,7 +125,9 @@ class QuizController extends Controller
       $data['paginates'] = $paginates;
       $data['choices'] = ['A', 'B', 'C', 'D'];
       $data['resArray'] = $resArray;
+      $data['resAry'] = $resAry;
       $data['quiz_id'] = $id;
+
 
       return view('students.users.doQuiz', $data);
     }
@@ -178,7 +182,9 @@ class QuizController extends Controller
       $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
 
       foreach ($response as $key => $value) {
-          $resArray[] = $value->question_id;
+        $resAry[] = $value->question_id;
+        $resArray[$key]['id'] = $value->question_id;
+        $resArray[$key]['answer'] = $value->answer;
       }
 
       $data['quiz'] = $quiz;
@@ -186,6 +192,7 @@ class QuizController extends Controller
       $data['paginates'] = $paginates;
       $data['choices'] = ['A', 'B', 'C', 'D'];
       $data['resArray'] = $resArray;
+      $data['resAry'] = $resAry;
 
       return \Response::json(view('students.list.questionPage', $data)->render());
     }

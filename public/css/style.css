@@ -363,7 +363,7 @@ a.quizbox:hover {
   border-radius: 100px;
 }
 .btn-unsave {
-  color: #fff;
+  color: #212121;
   border: 2px solid #69E0C1;
 }
 .btn-unsave:hover {
@@ -372,8 +372,11 @@ a.quizbox:hover {
 }
 .btn-save {
   color: #fff;
-  background: #8AC249;
-  border-color: #8AC249;
+  background: #69E0C1;
+  border-color: #69E0C1;
+}
+.btn-save:hover {
+  color: #fff;
 }
 
 
@@ -411,7 +414,7 @@ a.quizbox:hover {
 .btn-gibson {
   width: 200px;
   height: 50px;
-  color: #FFF;
+  color: #212121;
   background: transparent;
   border: 3px solid #69E0C1;
   transition: 0.5s;
@@ -421,7 +424,6 @@ a.quizbox:hover {
 
 .btn-gibson:hover {
   letter-spacing: 10px;
-    color: #FFF;
 }
 
 
@@ -455,17 +457,7 @@ a.quizbox:hover {
   color: rgba(255,255,255,0.7);
 }
 
-hr {
-  -moz-border-bottom-colors: none;
-  -moz-border-image: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
-  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
-  border-style: solid none;
-  border-width: 1px 0;
-  margin: 18px 0;
-}
+
 
 img.showQuiz {
   max-width: 100%;
@@ -488,56 +480,10 @@ img.showQuiz {
 
 }
 
-.boxPanelQuiz {
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
-}
-
-.boxImagePanel {
-  width: 100%;
-  max-height: 300px;
-  padding: 0px;
-  margin: 0px;
-  overflow: hidden;
-  border-radius: 5px;
-}
-
-
-.boxImageQuiz {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-
-
-.boxAskPanel {
-  position: relative;
-  background: #212121;
-  margin: 0px;
-  margin-top: -10px;
-  padding: 20px 50px 20px 50px;
-  border-radius: 5px;
-  color: #fff;
-  min-height: 60px;
-}
 
 .saveNext {
   padding-top: 20px;
 }
-
-
-
-.trueAnswer {
-  background: #212121;
-  top: -10px;
-  border-radius: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-
 
 .JesterBox div {
   visibility: hidden;
@@ -584,4 +530,64 @@ img.showQuiz {
 .JesterBox div:target img {
   margin-left: 0px;
   opacity: 1;
+}
+
+
+.imageQuiz {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.imageBox {
+  position: relative;
+  width: 100%;
+  max-height: 300px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+}
+
+.imageBox:hover .overlayImage {
+  opacity: 0.9;
+}
+
+.overlayImage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  max-height: 300px;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #69E0C1;
+}
+
+.textOverlay {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.askBox {
+  padding: 5px 20px 5px 20px;
+}
+.answerBox {
+  padding: 20px 20px 0px 20px;
+}
+
+hr.menuList {
+  padding: 0px;
+  margin-top: 0px;
+  max-width: 100px;
+  margin-left: 50%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
