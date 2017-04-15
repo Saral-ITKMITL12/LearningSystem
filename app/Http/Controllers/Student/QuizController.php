@@ -22,6 +22,7 @@ class QuizController extends Controller
      */
     public function index($id)
     {
+        
         $quizs = Quiz::where('course_id', $id)->get();
 
         $data['quizs'] = $quizs;
@@ -142,17 +143,19 @@ class QuizController extends Controller
       $response = Response::where([['user_id',$user_id],['quiz_id',$quiz_id],['question_id',$id]])->first();
 
       if(empty($response)){
-        $reponse = new Response();
-        $reponse->user_id = $user_id;
-        $reponse->quiz_id = $quiz_id;
-        $reponse->question_id = $id;
-        $reponse->answer = $request['answer'];
+        $response = new Response();
+        $response->user_id = $user_id;
+        $response->quiz_id = $quiz_id;
+        $response->question_id = $id;
+        $response->answer = $request['answer'];
 
-        $reponse->save();
+      }else{
+        $response->answer = $request['answer'];
+
       }
-
+      $response->save();
       return \Response::json(view('layouts.flashJS',
-      ['flash_notice' =>'System: ดำเนินการบันทึกข้อมูล สำเร็จ'.$request['questionType'].' '.$request['page'].' '.$request['answer'],
+      ['flash_notice' =>'System: ดำเนินการบันทึกข้อมูล สำเร็จ'.$request['questionType'].' '.$request['page'].' '.$request['answer'] ,
       'flash_type' => 'success'])->render());
 
     }

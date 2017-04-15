@@ -20,7 +20,7 @@
           dataType: 'json',
         }).done(function(data) {
           $('#{{ $name }}UserTable').html(data);
-          location.hash = '{{ $name }}User?page='+page;
+          // location.hash = '{{ $name }}User?page='+page;
         }).fail(function() {
           alert('Posts could not be loaded.');
         });

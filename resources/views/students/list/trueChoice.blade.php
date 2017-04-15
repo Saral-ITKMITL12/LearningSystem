@@ -18,7 +18,7 @@
   </div>
 
   <div class="col-md-12 answerBox">
-    <div class="segmented-control segmented-deepblue" id="sengment-1" style="width: 100%;">
+    <div class="segmented-control segmented-bulma" id="sengment-1" style="width: 100%;">
       <input type="radio" name="answer" id="answer-1" value="true"
       @for($i = 1; $i <= $paginates->lastPage(); $i++)
         @foreach($resArray as $rkey => $resValue)
@@ -70,6 +70,7 @@ $("#saveQuiz").on("click", function(){
       dataType: 'json',
     }).done(function(data) {
       $('#saveSucces').html(data);
+
     }).fail(function() {
       alert('error');
     });

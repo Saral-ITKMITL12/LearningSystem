@@ -350,7 +350,10 @@ img.modalimg {
   width: 100%;
   color: #69E0C1;
 }
-
+.segmented-bulma{
+  width: 100%;
+  color: #01D1B2;
+}
 a.quizbox {
   color: #fff;
 }
@@ -363,17 +366,17 @@ a.quizbox:hover {
   border-radius: 100px;
 }
 .btn-unsave {
-  color: #212121;
-  border: 2px solid #69E0C1;
+  color: #363636;
+  border: 2px solid #01D1B2;
 }
 .btn-unsave:hover {
   color: #fff;
-  background: #69E0C1;
+  background: #01D1B2;
 }
 .btn-save {
   color: #fff;
-  background: #69E0C1;
-  border-color: #69E0C1;
+  background: #01D1B2;
+  border-color: #01D1B2;
 }
 .btn-save:hover {
   color: #fff;
@@ -384,26 +387,18 @@ a.quizbox:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #2d3e50;
-   /*fallback for old browsers */
-  background: -webkit-linear-gradient(-135deg,  #004e92  0%,#000428 100%);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(-135deg,  #004e92  0%,#000428 100%);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  background-position: center center;
-
+  background: #FFFFFF;
 }
 @media (min-width: 990px) {
   .indexLogin {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #2d3e50;
+    background: #ffffff;
      /*fallback for old browsers */
-    background: url('/img/lamp-bg.png'), -webkit-linear-gradient(-135deg,  #004e92  0%,#000428 100%);
+    background: url('/img/lamp-bg.png');
     /* Chrome 10-25, Safari 5.1-6 */
-    background: url('/img/lamp-bg.png'), linear-gradient(-135deg,  #004e92  0%,#000428 100%);
+    background: url('/img/lamp-bg.png');
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     background-position: center center;
@@ -414,15 +409,16 @@ a.quizbox:hover {
 .btn-gibson {
   width: 200px;
   height: 50px;
-  color: #212121;
-  background: transparent;
-  border: 3px solid #69E0C1;
+  color: #FFFFFF;
+  background: #01D1B2;
+  /*border: 3px solid #01D1B2;*/
   transition: 0.5s;
   border-radius: 100px;
   margin: 10px;
 }
 
 .btn-gibson:hover {
+  color: #FFFFFF;
   letter-spacing: 10px;
 }
 
@@ -435,15 +431,15 @@ a.quizbox:hover {
   height: 50px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0);
+  border: 2px solid rgba(122, 122, 122, 0.5);
   overflow: hidden;
   transition: all 0.5s ease-in-out;
-  color: #fff;
+  color: #7a7a7a;
 }
 
 .text:focus {
   outline: 0;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(105, 224, 193, 0.5);
   border-radius: 20px;
   background: rgba(0, 0, 0, 0);
 }
@@ -465,20 +461,7 @@ img.showQuiz {
   max-height: 300px;
 }
 
-.gradeintBG {
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  background: #2d3e50;
-   /*fallback for old browsers */
-  background: -webkit-linear-gradient(-135deg,  #004e92  0%,#000428 100%);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(-135deg,  #004e92  0%,#000428 100%);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-  background-position: center center;
-
-}
 
 
 .saveNext {
@@ -563,7 +546,7 @@ img.showQuiz {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: #69E0C1;
+  background-color: #01D1B2;
 }
 
 .textOverlay {

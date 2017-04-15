@@ -58,7 +58,7 @@
             dataType: 'json',
           }).done(function(data) {
             $('#courseMember').html(data);
-            location.hash = page;
+            // location.hash = page;
           }).fail(function() {
             alert('Posts could not be loaded.');
           });

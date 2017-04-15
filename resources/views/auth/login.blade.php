@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/loginStyle.css')}}">
 <section class="features indexLogin">
 <div class="container">
 
 
   <div class="col-md-5 col-md-offset-5 text-right" style="margin-top: 50px;">
-      <h2 style="color: #fff;">Learning System</h2>
-      <p style="color: #fff">Faculty of Information Technology @KMTIL</p>
+      <h2 style="color: #363636;">Learning System</h2>
+      <p style="color: #7a7a7a">Faculty of Information Technology @KMTIL</p>
       @include('auth.loginForm')
   </div>
 
