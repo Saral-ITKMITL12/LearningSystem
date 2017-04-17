@@ -15,10 +15,12 @@
       <ul class="pagination">
           @for ($i = 1; $i <= $paginates->lastPage(); $i++)
               <a class="btn btn-round
+              @if(!empty($resAry))
                     @if(in_array($questions[$i-1]->id, $resAry))
                     btn-save
                     @else
                     btn-unsave
+                    @endif
                     @endif"
                 id="pageQuestion{{ $i }}" data-token="{{ csrf_token() }}">{{ $i }}
               </a>

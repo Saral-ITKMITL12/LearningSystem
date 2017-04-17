@@ -114,7 +114,8 @@ class QuizController extends Controller
       }
 
       $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
-
+      $resAry = '';
+      $resArray ='';
       foreach ($response as $key => $value) {
           $resAry[] = $value->question_id;
           $resArray[$key]['id'] = $value->question_id;

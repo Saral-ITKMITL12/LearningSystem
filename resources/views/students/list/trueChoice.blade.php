@@ -20,6 +20,7 @@
   <div class="col-md-12 answerBox">
     <div class="segmented-control segmented-bulma" id="sengment-1" style="width: 100%;">
       <input type="radio" name="answer" id="answer-1" value="true"
+      @if(!empty($resArray))
       @for($i = 1; $i <= $paginates->lastPage(); $i++)
         @foreach($resArray as $rkey => $resValue)
         @if($resValue['id'] == $value->id)
@@ -28,8 +29,10 @@
           @endif
         @endif
       @endforeach
-      @endfor>
+      @endfor
+      @endif>
       <input type="radio" name="answer" id="answer-2" value="false"
+      @if(!empty($resArray))
       @for($i = 1; $i <= $paginates->lastPage(); $i++)
         @foreach($resArray as $rkey => $resValue)
         @if($resValue['id'] == $value->id)
@@ -38,7 +41,8 @@
           @endif
         @endif
       @endforeach
-      @endfor>
+      @endfor
+      @endif>
       <label for="answer-1" data-value="True">True</label>
       <label for="answer-2" data-value="False">False</label>
     </div>

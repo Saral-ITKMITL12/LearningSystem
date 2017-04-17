@@ -57,7 +57,7 @@
   ])
 
   @include('layouts.menuBox',[
-  'url' => '/teacher/user/userCouseManage/'.$id,
+  'url' => '/teacher/qiuz/ScoreReport/'.$id.'/select',
   'name' => 'Quiz Report',
   'colorClass' => 'box-color box-color-'.'orange',
   'cir1Class' => 'circle-1 circle-1-'.'orange',

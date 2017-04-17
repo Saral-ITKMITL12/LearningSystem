@@ -6769,3 +6769,70 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+.table > thead > tr > td.bulmaBlue,
+.table > tbody > tr > td.bulmaBlue,
+.table > tfoot > tr > td.bulmaBlue,
+.table > thead > tr > th.bulmaBlue,
+.table > tbody > tr > th.bulmaBlue,
+.table > tfoot > tr > th.bulmaBlue,
+.table > thead > tr.bulmaBlue > td,
+.table > tbody > tr.bulmaBlue > td,
+.table > tfoot > tr.bulmaBlue > td,
+.table > thead > tr.bulmaBlue > th,
+.table > tbody > tr.bulmaBlue > th,
+.table > tfoot > tr.bulmaBlue > th {
+  background-color: #01D1B2;
+  color: #fff;
+  border: red;
+}
+
+.table > thead > tr > td.greenCorrect,
+.table > tbody > tr > td.greenCorrect,
+.table > tfoot > tr > td.greenCorrect,
+.table > thead > tr > th.greenCorrect,
+.table > tbody > tr > th.greenCorrect,
+.table > tfoot > tr > th.greenCorrect,
+.table > thead > tr.greenCorrect > td,
+.table > tbody > tr.greenCorrect > td,
+.table > tfoot > tr.greenCorrect > td,
+.table > thead > tr.greenCorrect > th,
+.table > tbody > tr.greenCorrect > th,
+.table > tfoot > tr.greenCorrect > th {
+  color: #fff;
+  background-color: #23D160;
+}
+
+.table > thead > tr > td.redWrong,
+.table > tbody > tr > td.redWrong,
+.table > tfoot > tr > td.redWrong,
+.table > thead > tr > th.redWrong,
+.table > tbody > tr > th.redWrong,
+.table > tfoot > tr > th.redWrong,
+.table > thead > tr.redWrong > td,
+.table > tbody > tr.redWrong > td,
+.table > tfoot > tr.redWrong > td,
+.table > thead > tr.redWrong > th,
+.table > tbody > tr.redWrong > th,
+.table > tfoot > tr.redWrong > th {
+  color: #fff;
+  background-color: #FF3860;
+}
+
+.table > thead > tr > td.blueDoing,
+.table > tbody > tr > td.blueDoing,
+.table > tfoot > tr > td.blueDoing,
+.table > thead > tr > th.blueDoing,
+.table > tbody > tr > th.blueDoing,
+.table > tfoot > tr > th.blueDoing,
+.table > thead > tr.blueDoing > td,
+.table > tbody > tr.blueDoing > td,
+.table > tfoot > tr.blueDoing > td,
+.table > thead > tr.blueDoing > th,
+.table > tbody > tr.blueDoing > th,
+.table > tfoot > tr.blueDoing > th {
+  color: #fff;
+  background-color: #3273DC;
+}

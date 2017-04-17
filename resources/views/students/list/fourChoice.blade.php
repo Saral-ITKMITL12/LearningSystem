@@ -20,7 +20,8 @@
 <div class="col-md-12 answerBox">
 @foreach($value->descript['answer'] as $qkey => $answer)
 <div class="segmented-control segmented-bulma" style="width: 100%;">
-    <input type="radio" name="answer" id="answer-{{ $qkey }}" value="{{ $choices[$qkey] }}"
+    <input type="radio" name="answer" id="answer-{{ $qkey }}" value="{{ $qkey }}"
+      @if(!empty($resArray))
     @for($i = 1; $i <= $paginates->lastPage(); $i++)
       @foreach($resArray as $rkey => $resValue)
       @if($resValue['id'] == $value->id)
@@ -29,7 +30,9 @@
         @endif
       @endif
     @endforeach
-    @endfor>
+    @endfor
+    @endif>
+
     <label for="answer-{{ $qkey }}" data-value="{{ $choices[$qkey]}}) {{ $answer }}">
       {{ $choices[$qkey]}}) {{ $answer }}
     </label>

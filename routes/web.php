@@ -80,6 +80,9 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::delete('/quiz/question/{id}','Teacher\QuestionManageController@destroy');
 
+    Route::get('/qiuz/ScoreReport/{id}/select','Teacher\ScoreController@index');
+    Route::get('/qiuz/ScoreReport/{course_id}/{quiz_id}/view','Teacher\ScoreController@create');
+
   });
 
   Route::group(['prefix' => 'student', 'middleware' => ['role:student']], function () {

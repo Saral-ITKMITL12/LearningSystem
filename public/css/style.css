@@ -590,3 +590,46 @@ hr.menuList {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 }
+
+.btn-correct {
+  background: #23D160;
+  width: 90%;
+  color: #fff;
+}
+.btn-wrong {
+  background: #FF3860;
+  width: 90%;
+  color: #fff;
+}
+.btn-thinking {
+  background: #3273DC;
+  width: 90%;
+  color: #fff;
+}
+
+.btn-correct:hover  {
+  background: #23D160;
+  width: 90%;
+  color: #fff;
+}
+.btn-wrong:hover {
+  background: #FF3860;
+  width: 90%;
+  color: #fff;
+}
+.btn-thinking:hover {
+  background: #3273DC;
+  width: 90%;
+  color: #fff;
+}
+
+.statusWidth {
+  max-width: 120px;
+}
+
+.drakText {
+  color: #363636;
+}
+.softDrakText {
+  color: #7a7a7a;
+}

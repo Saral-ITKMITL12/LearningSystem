@@ -19,13 +19,16 @@
 
   <div class="col-md-12 answerBox">
     <input type="text" name="answer" class="form-control"
+      @if(!empty($resArray))
     @for($i = 1; $i <= $paginates->lastPage(); $i++)
       @foreach($resArray as $rkey => $resValue)
       @if($resValue['id'] == $value->id)
           value="{{ $resValue['answer']}}"
       @endif
     @endforeach
-    @endfor>
+    @endfor
+    @endif>
+
     <hr>
   </div>
   <div class="col-md-12 text-center saveNext">
