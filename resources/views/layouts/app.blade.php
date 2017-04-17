@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +34,7 @@
 </head>
 
 <body>
+
 
   <div id="app">
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -97,12 +97,16 @@
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.js')}}"></script>
 
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.js')}}"></script>
     <script src="{{ asset('js/bootstrap-notify.min.js')}}"></script>
 
     @unless(empty(session('flash_notice')))
     <script type="text/javascript">
+    window.Laravel = { csrfToken: '{{ csrf_token() }}' };
+
     $.notify(
       {
         message: "{{ Session::get('flash_notice') }}"

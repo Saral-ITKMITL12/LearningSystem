@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-
+use App\Card;
 class HomeController extends Controller
 {
     /**
@@ -33,5 +33,6 @@ class HomeController extends Controller
       }else{
           return redirect('/student/user/course/create');
       }
+
     }
 }
