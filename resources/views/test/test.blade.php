@@ -1,26 +1,20 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+  <script>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <a href="admin/user/manage/create">
-          <div class="col-md-4">
-            <div class="box-color">
-              <div class="circle-1">
-                <div class="circle-2">
-                  <div class="circle-3">
-                    <div class="circle-4">
-                        <h1 class="box-icon"><i class="fa fa-user fa-2x fa-inverse box-icon"></i></h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h1 class="box-text"><b>USER</b></h1>
-              <p><i>user manage</i></p>
-            </div>
-          </div>
-        </a>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
 
-</div>
+    var pusher = new Pusher('7435ecf02992f7d22974', {
+      cluster: 'ap1',
+      encrypted: true
+    });
 
-@endsection
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(data.message);
+    });
+  </script>
+</head>

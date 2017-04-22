@@ -25,7 +25,7 @@
     @for($i = 1; $i <= $paginates->lastPage(); $i++)
       @foreach($resArray as $rkey => $resValue)
       @if($resValue['id'] == $value->id)
-      @if($resValue['answer'] == $choices[$qkey])
+      @if($resValue['answer'] == $i)
           checked=""
         @endif
       @endif

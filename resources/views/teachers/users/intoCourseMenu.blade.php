@@ -70,6 +70,19 @@
   ])
 
   @include('layouts.menuBox',[
+  'url' => '/course/forum/'.$id.'/show',
+  'name' => 'Forum',
+  'colorClass' => 'box-color box-color-'.'purple',
+  'cir1Class' => 'circle-1 circle-1-'.'purple',
+  'cir2Class' => 'circle-2 circle-2-'.'purple',
+  'cir3Class' => 'circle-3 circle-3-'.'purple',
+  'cir4Class' => 'circle-4 circle-4-'.'purple',
+  'textClass' => 'box-text',
+  'iconClass' => "fa fa-user fa-2x fa-inverse",
+  'menuDes' => 'create user and manage'
+  ])
+
+  @include('layouts.menuBox',[
   'url' => '/teacher/user/userCouseManage/'.$id,
   'name' => 'User Manage',
   'colorClass' => 'box-color box-color-'.'purple',

@@ -15,13 +15,13 @@
       <a class="btn btn-thinking statusWidth" >THINKING</a>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12" id="tableScore">
       <table class="table text-center" >
         <tr class="bulmaBlue ">
           <th class="text-center">Student ID</th>
-          <th class="text-center"><i class="fa fa-check-circle" aria-hidden="true"></i></i></th>
+          <th class="text-center leftTD"><i class="fa fa-check-circle" aria-hidden="true"></i></i></th>
           <th class="text-center"><i class="fa fa-times-circle" aria-hidden="true"></i></th>
-          <th class="text-center"><i class="fa fa-question-circle" aria-hidden="true"></i></th>
+          <th class="text-center rightTD"><i class="fa fa-question-circle" aria-hidden="true"></i></th>
           @for($i=0; $i< $question_count; $i++)
           <th class="text-center">{{ $i+1 }}</th>
           @endfor
@@ -29,9 +29,9 @@
         @foreach($studentAnswer as $key => $student)
         <tr>
           <td>{{ $key }}</td>
-          <td>{{ $score[$key]['correct'] }}</td>
+          <td class="leftTD">{{ $score[$key]['correct'] }}</td>
           <td>{{ $score[$key]['wrong'] }}</td>
-          <td>{{ $score[$key]['thinking'] }}</td>
+          <td class="rightTD">{{ $score[$key]['thinking'] }}</td>
           @foreach($student as $skey => $value)
           <td class="text-center">
           @if($value['status'] == "correct")
@@ -86,5 +86,33 @@
   </div>
 
 </section>
+
+<script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+<script>
+
+  // Enable pusher logging - don't include this in production
+  // Pusher.logToConsole = true;
+
+  var pusher = new Pusher('7435ecf02992f7d22974', {
+    cluster: 'ap1',
+    encrypted: true
+  });
+
+  var channel = pusher.subscribe('my-channel');
+  channel.bind('update-score', function() {
+
+    $.ajax({
+      url: '/teacher/qiuz/ScoreReport/{{$course_id}}/{{$quiz_id}}/refresh',
+      type: 'GET',
+      dataType: 'json',
+    }).done(function(data) {
+      $('#tableScore').html(data);
+    }).fail(function() {
+      alert('error');
+    });
+
+  });
+
+</script>
 
 @endsection

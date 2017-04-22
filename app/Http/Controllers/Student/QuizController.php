@@ -13,6 +13,7 @@ use App\Quiz;
 use App\Question;
 use App\Response;
 use Carbon\Carbon;
+use Pusher;
 
 class QuizController extends Controller
 {
@@ -134,6 +135,7 @@ class QuizController extends Controller
       return view('students.users.doQuiz', $data);
     }
 
+
     public function quizUpdate(Request $request, $id)
     {
       $user_id = Auth::user()->id;
@@ -155,6 +157,22 @@ class QuizController extends Controller
 
       }
       $response->save();
+
+
+      $options = array(
+        'cluster' => 'ap1',
+        'encrypted' => true
+      );
+      $pusher = new Pusher(
+        '7435ecf02992f7d22974',
+        '6579f55fb7f4a05f5da9',
+        '328492',
+        $options
+      );
+
+      $data['message'] = 'update';
+      $pusher->trigger('my-channel', 'update-score', $data);
+
       return \Response::json(view('layouts.QuizFlashJS',
       ['flash_notice' =>'System: ดำเนินการบันทึกข้อมูล สำเร็จ',
       'flash_type' => 'success'])->render());
@@ -234,4 +252,6 @@ class QuizController extends Controller
 
       return \Response::json(view('students.list.paginateHead', $data)->render());
     }
+
+
 }

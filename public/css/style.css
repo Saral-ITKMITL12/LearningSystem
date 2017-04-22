@@ -633,3 +633,16 @@ hr.menuList {
 .softDrakText {
   color: #7a7a7a;
 }
+
+.leftTD {
+  border-left: 1px solid #ddd;
+}
+.rightTD {
+  border-right: 1px solid #ddd;
+}
+.bulmaBlue-leftTD {
+  border-left: 1px solid #ddd;
+}
+.bulmaBlue-rightTD {
+  border-right: 1px solid #ddd;
+}

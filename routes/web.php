@@ -82,6 +82,7 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::get('/qiuz/ScoreReport/{id}/select','Teacher\ScoreController@index');
     Route::get('/qiuz/ScoreReport/{course_id}/{quiz_id}/view','Teacher\ScoreController@create');
+    Route::get('/qiuz/ScoreReport/{course_id}/{quiz_id}/refresh','Teacher\ScoreController@updateScore');
 
   });
 
@@ -102,5 +103,7 @@ Route::group(['middleware' => ['web']], function() {
 
   });
 
+
+  Route::get('/course/forum/{id}/show','ForumController@index');
 
 });
