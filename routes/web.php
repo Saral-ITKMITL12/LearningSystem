@@ -105,5 +105,6 @@ Route::group(['middleware' => ['web']], function() {
 
 
   Route::get('/course/forum/{id}/show','ForumController@index');
+  Route::post('/course/forum/{id}/store','ForumController@storeMessage');
 
 });

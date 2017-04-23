@@ -10,37 +10,17 @@
         <p class="courseHeader">Course</p>
       </div>
 
+      @if(!empty($courses))
+      @foreach($courses as $key => $course)
       <div class="ListBoxforSubject">
         <div class="subjectList text-center">
           <p class="subjectTitleParagrap">
-            06016208 MULTIMEDIA AND WEB TECHNOLOGY
+            {{ $course->code.' '.$course->name }}
           </p>
         </div>
       </div>
-
-      <div class="ListBoxforSubject">
-        <div class="subjectList text-center">
-          <p class="subjectTitleParagrap">
-            06016208 MULTIMEDIA AND WEB TECHNOLOGY
-          </p>
-        </div>
-      </div>
-
-      <div class="ListBoxforSubject">
-        <div class="subjectList text-center">
-          <p class="subjectTitleParagrap">
-            06016208 MULTIMEDIA AND WEB TECHNOLOGY
-          </p>
-        </div>
-      </div>
-
-      <div class="ListBoxforSubject">
-        <div class="subjectList text-center">
-          <p class="subjectTitleParagrap">
-            06016208 MULTIMEDIA AND WEB TECHNOLOGY
-          </p>
-        </div>
-      </div>
+      @endforeach
+      @endif
 
     </div><!-- Course  -->
 
@@ -70,7 +50,7 @@
           <div class="talk-bubble-sender tri-right right-top">
             <div class="talktext">
               <img class="sendImage" src="http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg" alt="">
-              <p>This one adds a righ</p>
+              <p>สวัสดี ฮัลโหลๆ</p>
             </div>
           </div>
         </div>
@@ -84,17 +64,16 @@
           </div>
         </div>
 
-
-
       </div>
+
       <div class="senderBox">
+        <div class="box80">
+          <input id="message" class="senderMessage" type="text" name="" value="" data-token="{{ csrf_token() }}" placeholder="พิมพ์ข้อความ..." onkeydown="commentPostEnter()">
+        </div>
         <div class="box20">
           <a href="#" class="senderItem">
             <i class="fa fa-picture-o" aria-hidden="true"></i>
           </a>
-        </div>
-        <div class="box80">
-          <input class="senderMessage" type="text" name="" value="" placeholder="พิมพ์ข้อความ...">
         </div>
         <div class="box20">
           <a href="#" class="senderItem">
@@ -102,13 +81,14 @@
           </a>
         </div>
       </div>
+
     </div>
 
 
 </section>
+
 <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript">
-$("#style-1").scrollTop($('#style-1').height())
-</script>
+<script src="{{ asset('js/chat.js') }}" type="text/javascript"></script>
+
 
 @endsection

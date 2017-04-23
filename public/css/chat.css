@@ -14,7 +14,7 @@ body {
 .forumbox {
   padding: 0px;
   margin: 0px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 .subject {
   position: absolute;
@@ -41,7 +41,7 @@ body {
 }
 .subjectList {
   position: relative;
-  max-height: 120px;
+  max-height: 80px;
   width: 90%;
   padding: 0px;
   margin: 0px;
@@ -217,8 +217,8 @@ body {
   position: relative;
 	max-width: 60%;
 	height: auto;
-	background-color: #01D1B2;
-  color: #fff;
+	background-color: #ECEFF1;
+  color: #1a1a1a;
   border-radius: 10px;
 }
 
@@ -446,7 +446,7 @@ body {
   top: 0px;
 	bottom: auto;
 	border: 20px solid;
-	border-color: #01D1B2 transparent transparent transparent;
+	border-color: #ECEFF1 transparent transparent transparent;
 }
 
 /* talk bubble contents */
@@ -464,4 +464,5 @@ body {
 .sendImage {
   max-width: 200px;
   max-height: 200px;
+  margin-bottom: 10px;
 }
