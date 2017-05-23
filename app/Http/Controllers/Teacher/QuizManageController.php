@@ -45,6 +45,11 @@ class QuizManageController extends Controller
      */
     public function store(Request $request, $id)
     {
+
+        // $splitName = explode('/ ', $request['start']);
+        // dd($splitName);
+
+
         $quiz = new Quiz();
         $quiz->course_id = $id;
         $quiz->name = $request['name'];
@@ -54,7 +59,7 @@ class QuizManageController extends Controller
 
         $quiz->save();
 
-        return redirect('teacher/user/quiz/'.$id)->with([
+        return redirect('teacher/quiz/question/index/'.$id)->with([
           'flash_notice' =>'System: ดำเนินการเพิ่มข้อมูล สำเร็จ',
            'flash_type' => 'success ']);
     }
@@ -74,6 +79,7 @@ class QuizManageController extends Controller
 
         $data['quizs'] = $quizs;
         $data['course'] = $course;
+
         return view('teachers.users.quizEdit', $data);
     }
 
@@ -107,7 +113,7 @@ class QuizManageController extends Controller
 
         $quiz->save();
 
-        return redirect('teacher/user/quiz/'.$id)->with([
+        return redirect('teacher/quiz/question/index/'.$id)->with([
           'flash_notice' =>'System: ดำเนินการแก้ไขข้อมูล สำเร็จ',
            'flash_type' => 'success ']);
     }
@@ -124,7 +130,7 @@ class QuizManageController extends Controller
         $id = $quiz->course_id;
         $quiz->forceDelete();
 
-        return redirect('teacher/user/quiz/'.$id)->with([
+        return redirect('teacher/quiz/question/index/'.$id)->with([
           'flash_notice' =>'System: ดำเนินการลบข้อมูล สำเร็จ',
            'flash_type' => 'success ']);
     }

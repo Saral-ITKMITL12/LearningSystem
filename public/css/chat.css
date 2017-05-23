@@ -14,7 +14,7 @@ body {
 .forumbox {
   padding: 0px;
   margin: 0px;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 .subject {
   position: absolute;
@@ -24,8 +24,27 @@ body {
   background: #fff;
   margin: 0;
   border: 1px solid #e6e6e6;
+  overflow: scroll;
+  overflow-x: hidden;
 
 }
+
+.subject::-webkit-scrollbar-track
+{
+	border-radius: 5px;
+}
+
+.subject::-webkit-scrollbar
+{
+	width: 5px;
+}
+
+.subject::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+	background-color: #CED7DB;
+}
+
 .subjectTitle {
   position: relative;
   height: 55px;
@@ -41,7 +60,6 @@ body {
 }
 .subjectList {
   position: relative;
-  max-height: 80px;
   width: 90%;
   padding: 0px;
   margin: 0px;
@@ -49,6 +67,7 @@ body {
   right: 5%;
   left: 5%;
   padding-top: 10px;
+  overflow: hidden;
 }
 
 
@@ -132,6 +151,9 @@ body {
 	border-radius: 5px;
 	background-color: #9D9D9D;
 }
+
+
+
 
 
 ::-webkit-input-border { /* Chrome/Opera/Safari */
@@ -462,7 +484,41 @@ body {
 }
 
 .sendImage {
-  max-width: 200px;
+  max-width: 100%;
   max-height: 200px;
   margin-bottom: 10px;
+}
+
+
+
+.conversation-start {
+  margin: 10px 0;
+  position: relative;
+  width: 100%;
+  margin-bottom: 27px;
+  text-align: center;
+}
+.conversation-start span {
+  font-size: 14px;
+  display: inline-block;
+  color: #999;
+}
+.conversation-start span:before, .conversation-start span:after {
+  position: absolute;
+  top: 10px;
+  display: inline-block;
+  width: 20%;
+  height: 1px;
+  content: '';
+  background-color: #e6e6e6;
+}
+.conversation-start span:before {
+  left: 0;
+}
+.conversation-start span:after {
+  right: 0;
+}
+
+.techerName {
+  margin: 0;
 }

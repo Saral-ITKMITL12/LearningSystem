@@ -19,7 +19,7 @@
             {{ csrf_field() }}
             <div class="form-group form-inline">
               <div class="col-md-5 col-md-offset-5">
-                <select required data-placeholder="Add Student to Course" class="chosen-select" multiple="" style="width: 350px; display: none;" name="student[]" id="student">
+                <select required data-placeholder="Add student to course" class="chosen-select" multiple="" style="width: 350px; display: none;" name="student[]" id="student">
                   @foreach($userSearch as $user)
                   <option value="{{ $user->stud_id }}">{{ $user->email}}</option>
                   @endforeach

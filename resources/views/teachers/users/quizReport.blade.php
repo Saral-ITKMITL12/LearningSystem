@@ -7,15 +7,22 @@
   <div class="container">
         <div class="col-md-6">
           <h3 class="drakText">{{ $quiz->name }} SCORE BOARD</h3>
-          <p class="doftDrakText">{{ $course->code }} {{ $course->name }}</p>
+          <p class="subTextSubject">{{ $course->code }} {{ $course->name }}</p>
         </div>
-    <div class="col-md-6 text-right">
-      <a class="btn btn-correct statusWidth" >CORRECT</a>
-      <a class="btn btn-wrong statusWidth" >WRONG</a>
-      <a class="btn btn-thinking statusWidth" >THINKING</a>
-    </div>
+        <div class="col-md-6 text-right">
+          <form class="" action="{{ url('/teacher/qiuz/ScoreReport/'.$course_id.'/'.$quiz_id.'/download') }}" method="post" target="_blank">
+            {{ csrf_field() }}
+            <button class="btn btn-correct downloadBTN" type="submit"><i class="fa fa-file-text" aria-hidden="true"></i> Export</button>
+          </form>
+        </div>
 
     <div class="col-md-12" id="tableScore">
+      <div class="col-md-6 text-left">
+        <a class="btn btn-correct statusWidth" ></a> <span class="statusInfo">CORRECT</span>
+        <a class="btn btn-wrong statusWidth" ></a> <span class="statusInfo">WRONG</span>
+        <a class="btn btn-thinking statusWidth" ></a> <span class="statusInfo">THINKING</span>
+      </div>
+      <br>
       <table class="table text-center" >
         <tr class="bulmaBlue ">
           <th class="text-center">Student ID</th>
@@ -114,5 +121,6 @@
   });
 
 </script>
+
 
 @endsection

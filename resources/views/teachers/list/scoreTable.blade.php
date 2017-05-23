@@ -1,3 +1,4 @@
+<br>
 <table class="table text-center" >
   <tr class="bulmaBlue ">
     <th class="text-center">Student ID</th>

@@ -25,14 +25,14 @@
   'cir4Class' => 'circle-4 circle-4-'.'green',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-plus-square-o fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage',
+  'menuDes' => 'create your new quiz',
   'id' => $id,
   'titleModal' => 'New Quiz',
   ])
 
   @include('layouts.menuBox',[
-  'url' => '/teacher/user/quiz/'.$id,
-  'name' => 'Quiz Edit',
+  'url' => '/teacher/quiz/question/index/'.$id,
+  'name' => 'Quiz Manage',
   'colorClass' => 'box-color box-color-'.'pink',
   'cir1Class' => 'circle-1 circle-1-'.'pink',
   'cir2Class' => 'circle-2 circle-2-'.'pink',
@@ -40,21 +40,9 @@
   'cir4Class' => 'circle-4 circle-4-'.'pink',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-pencil-square-o fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
+  'menuDes' => 'manage your quiz and create question'
   ])
 
-  @include('layouts.menuBox',[
-  'url' => '/teacher/quiz/question/index/'.$id,
-  'name' => 'Quiz Question',
-  'colorClass' => 'box-color box-color-'.'blue',
-  'cir1Class' => 'circle-1 circle-1-'.'blue',
-  'cir2Class' => 'circle-2 circle-2-'.'blue',
-  'cir3Class' => 'circle-3 circle-3-'.'blue',
-  'cir4Class' => 'circle-4 circle-4-'.'blue',
-  'textClass' => 'box-text',
-  'iconClass' => "fa fa-question-circle-o fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
-  ])
 
   @include('layouts.menuBox',[
   'url' => '/teacher/qiuz/ScoreReport/'.$id.'/select',
@@ -66,20 +54,20 @@
   'cir4Class' => 'circle-4 circle-4-'.'orange',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-bar-chart fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
+  'menuDes' => 'view your student score on real-time'
   ])
 
   @include('layouts.menuBox',[
   'url' => '/course/forum/'.$id.'/show',
   'name' => 'Forum',
-  'colorClass' => 'box-color box-color-'.'purple',
-  'cir1Class' => 'circle-1 circle-1-'.'purple',
-  'cir2Class' => 'circle-2 circle-2-'.'purple',
-  'cir3Class' => 'circle-3 circle-3-'.'purple',
-  'cir4Class' => 'circle-4 circle-4-'.'purple',
+  'colorClass' => 'box-color box-color-'.'blue',
+  'cir1Class' => 'circle-1 circle-1-'.'blue',
+  'cir2Class' => 'circle-2 circle-2-'.'blue',
+  'cir3Class' => 'circle-3 circle-3-'.'blue',
+  'cir4Class' => 'circle-4 circle-4-'.'blue',
   'textClass' => 'box-text',
-  'iconClass' => "fa fa-user fa-2x fa-inverse",
-  'menuDes' => 'create user and manage'
+  'iconClass' => "fa fa-weixin fa-2x fa-inverse",
+  'menuDes' => 'meet and answer the question'
   ])
 
   @include('layouts.menuBox',[
@@ -92,7 +80,7 @@
   'cir4Class' => 'circle-4 circle-4-'.'purple',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-user fa-2x fa-inverse",
-  'menuDes' => 'create user and manage'
+  'menuDes' => 'manage student in your course'
   ])
 
 

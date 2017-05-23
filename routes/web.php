@@ -84,6 +84,8 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('/qiuz/ScoreReport/{course_id}/{quiz_id}/view','Teacher\ScoreController@create');
     Route::get('/qiuz/ScoreReport/{course_id}/{quiz_id}/refresh','Teacher\ScoreController@updateScore');
 
+    Route::post('/qiuz/ScoreReport/{course_id}/{quiz_id}/download','Teacher\ScoreController@downloadScore');
+
   });
 
   Route::group(['prefix' => 'student', 'middleware' => ['role:student']], function () {
@@ -99,6 +101,9 @@ Route::group(['middleware' => ['web']], function() {
 
     Route::patch('/user/doQuizUpdate/{id}','Student\QuizController@quizUpdate');
     Route::get('/user/doQuizUpdateFail','Student\QuizController@quizUpdateFail');
+    Route::get('/user/quizFininsh/{id}','Student\QuizController@quizFininsh');
+
+    Route::get('/user/quizScoreResult/{id}','Student\QuizController@quizScoreResult');
 
 
   });

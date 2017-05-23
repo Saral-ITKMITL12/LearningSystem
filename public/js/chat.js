@@ -14,7 +14,7 @@
 
 
         $.ajax({
-          url: '/course/forum/{{ $course->id }}/store',
+          url: "/course/forum/{{ $course->id }}/store",
           type: 'POST',
           data: {
             _method: 'post',

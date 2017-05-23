@@ -92,7 +92,7 @@
             <label for="name" class="col-md-4 control-label">Role</label>
             <div class="col-md-6">
               <input type="radio" name="role" value="2" class="form-inline" required> Teacher
-              <input type="radio" name="role" value="3" class="form-inline"> Student
+              <input type="radio" name="role" value="3" class="form-inline" id="studentCheck"> Student
               <input type="radio" name="role" value="1" class="form-inline"> Admin
             </div>
           </div>
@@ -124,6 +124,22 @@
               @endif
             </div>
           </div>
+
+          <div class="form-group{{ $errors->has('std_code') ? ' has-error' : '' }}" id="stdCodeShow" style="display: none">
+            <label for="name" class="col-md-4 control-label">Student ID</label>
+
+            <div class="col-md-6">
+              <input id="std_code" type="text" class="form-control" name="std_code" value="{{ old('std_code') }}" required autofocus>
+
+              @if ($errors->has('std_code'))
+              <span class="help-block">
+                <strong>{{ $errors->first('std_code') }}</strong>
+              </span>
+              @endif
+            </div>
+          </div>
+
+
 
           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
@@ -239,5 +255,16 @@
 
 
 </section>
+
+
+<script type="text/javascript">
+  $("input:radio").change(function() {
+  if ($("#studentCheck").is(":checked")) {
+    $("#stdCodeShow").show();
+  }else{
+    $("#stdCodeShow").hide();
+  }
+});
+</script>
 
 @endsection

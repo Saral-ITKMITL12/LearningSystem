@@ -195,8 +195,8 @@ class BetaTableSeeder extends Seeder
      $t_id[34] = ['11','12','13'];
      $t_id[4] = ['14','15','16'];
 
-
        foreach ($courseList as $courselist_key => $courseList_value) {
+         $i = 10;
          foreach ($courseList_value as $course_key => $course_value) {
            $course = new App\Course();
            $course->code = $course_value['code'];
@@ -207,11 +207,12 @@ class BetaTableSeeder extends Seeder
            $course->teach_id = serialize($t_id[$courselist_key ]);
 
            $memberArray = array();
-           for ($x=10; $x <50 ; $x++) {
+           for ($x=$i; $x <$i+10 ; $x++) {
              $memberArray[$x-10] = (int)('560700'.$x);
            }
            $course->member = serialize($memberArray);
            $course->save();
+           $i += 10;
          }
        }
 

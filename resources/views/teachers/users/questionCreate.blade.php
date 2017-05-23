@@ -33,9 +33,9 @@
 
   </div>
 
-  @include('teachers.form.questionModalTrue',['id' => $course->id, 'key' => 'trueChoice'])
-  @include('teachers.form.questionModalFour',['id' => $course->id, 'key' => 'fourChoice'])
-  @include('teachers.form.questionModalword',['id' => $course->id, 'key' => 'word'])
+  @include('teachers.form.questionModalTrue',['id' => $quiz->id, 'key' => 'trueChoice'])
+  @include('teachers.form.questionModalFour',['id' => $quiz->id, 'key' => 'fourChoice'])
+  @include('teachers.form.questionModalWord',['id' => $quiz->id, 'key' => 'word'])
 
 </section>
 

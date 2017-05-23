@@ -12,6 +12,7 @@ use App\User;
 use App\Quiz;
 use App\Question;
 use App\Response;
+use App\Finish;
 use Carbon\Carbon;
 use Pusher;
 
@@ -24,10 +25,68 @@ class QuizController extends Controller
      */
     public function index($id)
     {
-        $now = Carbon::now();
-        $quizs = Quiz::where([['course_id', $id], ['start_date', '<', $now],  ['expire_date', '>', $now]])->get();
-        $data['quizs'] = $quizs;
 
+        $quizs = Quiz::where('course_id', $id)->get();
+        if($quizs->count() == 0){
+          return back()->with([
+            'flash_notice' =>'System: ยังไม่มีแบบทดสอบในขณะนี้',
+             'flash_type' => 'warning ']);
+        }
+
+        $quizID_list;
+        foreach ($quizs as $key => $quiz_value) {
+
+          $date = $quiz_value->start_date;
+          $splitDateTime = explode('/', $date);
+          $splitDate = preg_split('/\s+/', $splitDateTime[2]);
+          $time  = explode(':', $splitDate[1]);
+          $day = $splitDateTime[0];
+          $month = $splitDateTime[1];
+          $year = $splitDate[0];
+          $time = $splitDate[1];
+          $hour = $time[0].$time[0];
+          $minute = $time[3].$time[4];
+          $dateTime = $day.'-'.$month.'-'.$year.' '.$time;
+          $quizStartDateTime = Carbon::create($year, $month, $day, 10, $minute, 0, 'Asia/Bangkok');
+
+
+          $date = $quiz_value->expire_date;
+          $splitDateTime = explode('/', $date);
+          $splitDate = preg_split('/\s+/', $splitDateTime[2]);
+          $time  = explode(':', $splitDate[1]);
+          $day = $splitDateTime[0];
+          $month = $splitDateTime[1];
+          $year = $splitDate[0];
+          $time = $splitDate[1];
+          $hour = $time[0].$time[0];
+          $minute = $time[3].$time[4];
+          $dateTime = $day.'-'.$month.'-'.$year.' '.$time;
+          $quizExpireDateTime = Carbon::create($year, $month, $day, 10, $minute, 0, 'Asia/Bangkok');
+
+          $now =  Carbon::now('Asia/Bangkok');
+          //$now->gte($quizExpireDateTime)
+
+          if($now->gte($quizStartDateTime) && $now->lte($quizExpireDateTime))
+          $quizID_list[] = $quiz_value->id;
+
+
+        }
+
+
+        $quizs = Quiz::whereIn('id', $quizID_list)->get();
+
+        if($quizs->count() == 0){
+          return back()->with([
+            'flash_notice' =>'System: ยังไม่มีแบบทดสอบในขณะนี้',
+             'flash_type' => 'warning ']);
+        }
+        // $date = $quizs[0]->start_date;
+        // $splitDateTime = explode('/', $date);
+        // $splitDate = preg_split('/\s+/', $date);
+        // //$now = Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')->toDateTimeString();
+        // dd($splitName);
+
+        $data['quizs'] = $quizs;
         return view('students.users.quizIndex', $data);
     }
 
@@ -104,11 +163,24 @@ class QuizController extends Controller
 
     public function doQuiz($id)
     {
+      $user_id = Auth::user()->id;
+      $finish = Finish::where([['user_id',$user_id],['quiz_id',$id]])->get();
+      if($finish->count() != 0){
+        return back()->with
+        (['flash_notice' =>'System: คุณทำการส่งคำตอบแล้ว ไม่สามารถแก้ไขได้',
+        'flash_type' => 'danger']);
+      }
+
       $quiz = Quiz::find($id);
       $paginates = Question::where('quiz_id', $id)->paginate(1);
       $questions = Question::where('quiz_id', $id)->get();
 
-      $user_id = Auth::user()->id;
+      if($questions->count() == 0){
+        return back()->with
+        (['flash_notice' =>'System: ผู้สอนยังไม่ได้เพิ่มคำถาม',
+        'flash_type' => 'warning']);
+      }
+
 
       foreach ($paginates as $key => $paginate) {
         $paginate->descript = unserialize($paginate->descript);
@@ -203,18 +275,22 @@ class QuizController extends Controller
 
       $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
 
-      foreach ($response as $key => $value) {
-        $resAry[] = $value->question_id;
-        $resArray[$key]['id'] = $value->question_id;
-        $resArray[$key]['answer'] = $value->answer;
+      if($response->count() > 0){
+        foreach ($response as $key => $value) {
+          $resAry[] = $value->question_id;
+          $resArray[$key]['id'] = $value->question_id;
+          $resArray[$key]['answer'] = $value->answer;
+        }
+
+        //dd($resArray);
+        $data['resArray'] = $resArray;
+        $data['resAry'] = $resAry;
       }
 
       $data['quiz'] = $quiz;
       $data['questions'] = $questions;
       $data['paginates'] = $paginates;
       $data['choices'] = ['A', 'B', 'C', 'D'];
-      $data['resArray'] = $resArray;
-      $data['resAry'] = $resAry;
       $data['quiz_id'] = $id;
 
       return \Response::json(view('students.list.questionPage', $data)->render());
@@ -235,6 +311,7 @@ class QuizController extends Controller
 
       $response = Response::where([['user_id',$user_id],['quiz_id',$id]])->get();
 
+
       foreach ($response as $key => $value) {
           $resAry[] = $value->question_id;
           $resArray[$key]['id'] = $value->question_id;
@@ -253,5 +330,61 @@ class QuizController extends Controller
       return \Response::json(view('students.list.paginateHead', $data)->render());
     }
 
+    public function quizFininsh($id)
+    {
+
+      $course = Quiz::find($id);
+
+      // check user score
+      $myResponses = Response::where([['user_id', Auth::user()->id], ['quiz_id', $id]])->get();
+      $myScore = 0;
+        foreach ($myResponses as $response_key => $response_value) {
+          if($response_value->answer == unserialize(Question::where('id', $response_value->question_id)->first()->answer )){
+            $myScore++;
+          }
+        }
+
+      $finish = new Finish();
+      $finish->user_id = Auth::user()->id;
+      $finish->quiz_id = $id;
+      $finish->course_id = $course->course_id;
+      $finish->score = $myScore;
+      $finish->save();
+
+      return redirect('/student/user/course/create')->with
+      (['flash_notice' =>'System: ดำเนินการส่งคำตอบ สำเร็จ',
+      'flash_type' => 'success']);
+
+    }
+
+    public function quizScoreResult($id)
+    {
+      $user_id = Auth::user()->id;
+
+      $myFinishs = Finish::where('user_id',$user_id)->get();
+      if($myFinishs->count() == 0){
+        return redirect('/student/user/course/create')->with
+        (['flash_notice' =>'System: กรุณาส่งคำตอบก่อน',
+        'flash_type' => 'danger']);
+      }
+
+      $finishs = Finish::where([['course_id',$id]])->get()->groupBy('quiz_id');
+
+      foreach ($finishs as $key => $finish_value) {
+        $quizScore[$key]['count'] = Question::where('quiz_id', $key)->count();
+        $quizScore[$key]['max'] = $finish_value->max('score');
+        $quizScore[$key]['min'] = $finish_value->min('score');
+        $quizScore[$key]['average'] = (int)$finish_value->sum('score') / (int)$finishs->count();;
+      }
+
+      $data['course'] = Course::find($id);
+      $data['quiz'] = Quiz::where('course_id', $id)->get();
+      $data['myFinishs'] = $myFinishs;
+      $data['quizScores'] = $quizScore;
+
+      return view('students.users.scoreResult', $data);
+
+
+    }
 
 }

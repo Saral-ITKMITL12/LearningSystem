@@ -13,6 +13,7 @@
       <span class="textSupBox">Time: {{ $quiz->start_date }} - {{ $quiz->expire_date }}</span>
     </div>
     <div class="col-md-12  text-right">
+      <a href="{{ url('/teacher/user/quiz/delete/'.$id) }}" class="btn btn-danger " onclick="return confirm('Are you want Delete?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
       <a href="#editBox-{{ $id }}" data-toggle="modal" data-target="#editBox-{{ $id }}" class="btn btn-primary "><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
     </div>
   </div>
@@ -80,7 +81,6 @@
 
     $startTime{{ $id }}.datetimepicker({
       locale: 'th',
-      minDate: new Date(),
     });
     $endTime{{ $id }}.datetimepicker({
       useCurrent: false,

@@ -17,11 +17,11 @@
   'cir4Class' => 'circle-4 circle-4-'.'green',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-pencil-square-o fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
+  'menuDes' => 'do your quiz'
   ])
 
   @include('layouts.menuBox',[
-  'url' => '/teacher/user/userCouseManage/',
+  'url' => '/student/user/quizScoreResult/'.$id,
   'name' => 'Score',
   'colorClass' => 'box-color box-color-'.'orange',
   'cir1Class' => 'circle-1 circle-1-'.'orange',
@@ -30,11 +30,11 @@
   'cir4Class' => 'circle-4 circle-4-'.'orange',
   'textClass' => 'box-text',
   'iconClass' => "fa fa-bar-chart fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
+  'menuDes' => 'view your quiz score'
   ])
 
   @include('layouts.menuBox',[
-  'url' => '/teacher/quiz/question/index/',
+  'url' => '/course/forum/'.$id.'/show',
   'name' => 'Forum',
   'colorClass' => 'box-color box-color-'.'blue',
   'cir1Class' => 'circle-1 circle-1-'.'blue',
@@ -42,8 +42,8 @@
   'cir3Class' => 'circle-3 circle-3-'.'blue',
   'cir4Class' => 'circle-4 circle-4-'.'blue',
   'textClass' => 'box-text',
-  'iconClass' => "fa fa-question-circle-o fa-2x fa-inverse",
-  'menuDes' => 'create quiz and manage'
+  'iconClass' => "fa fa-weixin fa-2x fa-inverse",
+  'menuDes' => 'meet and ask the question'
   ])
 
 

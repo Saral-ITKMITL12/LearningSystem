@@ -138,10 +138,14 @@ class UserManageController extends Controller
             'role' => 'required',
           ]);
 
+
           $user = new User();
           $user->first_name = $request['first_name'];
           $user->last_name = $request['last_name'];
           $user->email = $request['email'];
+          if($request['std_code'] != ''){
+            $user->stud_id = $request['std_code'];
+          }
           $user->password = bcrypt($request['password']);
           $user->save();
 

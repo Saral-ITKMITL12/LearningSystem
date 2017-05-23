@@ -101,7 +101,7 @@
   padding: 30px 60px;
   text-align: center;
   text-transform: uppercase;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   background-size: 200% auto;
   color: white;
  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
@@ -130,7 +130,7 @@
 
 .box-color-blue {
    background: linear-gradient(135deg,  #bb6dec  0%,#00dede 100%);
-   transition: 0.5s;
+   /*transition: 0.5s;*/
    background-size: 200% auto;
    background-position: right center;
    position: relative;
@@ -138,7 +138,7 @@
 
 .box-color-pink {
   background: linear-gradient(135deg,  #FC354C  0%, #cbad6d 100%);
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   background-size: 200% auto;
   background-position: right center;
   position: relative;
@@ -146,7 +146,7 @@
 
 .box-color-green {
   background: linear-gradient(135deg,  #34e89e  0%, #02AAB0 100%);
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   background-size: 200% auto;
   background-position: right center;
   position: relative;
@@ -154,14 +154,14 @@
 
 .box-color-purple {
   background: linear-gradient(135deg,  #360033  0%,#0b8793 100%);
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   background-size: 200% auto;
   background-position: right center;
   position: relative;
 }
 .box-color-orange{
   background: linear-gradient(135deg, #DE6262   0%, #F9D423 100%);
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   background-size: 200% auto;
   background-position: right center;
   position: relative;
@@ -249,7 +249,7 @@
   left: 20px;
   top: 20px;
   opacity: 1;
-  transition: 0.5s;
+  /*transition: 0.5s;*/
 }
 
 .circle-4-blue {
@@ -412,7 +412,7 @@ a.quizbox:hover {
   color: #FFFFFF;
   background: #01D1B2;
   /*border: 3px solid #01D1B2;*/
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   border-radius: 100px;
   margin: 10px;
 }
@@ -428,7 +428,7 @@ a.quizbox:hover {
   color: #FFFFFF;
   background: #23D160;
   /*border: 3px solid #01D1B2;*/
-  transition: 0.5s;
+  /*transition: 0.5s;*/
   border-radius: 100px;
   margin: 10px;
 }
@@ -449,7 +449,7 @@ a.quizbox:hover {
   background: rgba(255, 255, 255, 0.1);
   border: 2px solid rgba(122, 122, 122, 0.5);
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  /*transition: all 0.5s ease-in-out;*/
   color: #7a7a7a;
 }
 
@@ -622,9 +622,15 @@ hr.menuList {
   width: 90%;
   color: #fff;
 }
-
+.statusInfo {
+  font-size: 0.7em;
+}
 .statusWidth {
-  max-width: 120px;
+  max-width: 30px;
+}
+.downloadBTN {
+  max-width: 160px;
+  margin-bottom: 10px;
 }
 
 .drakText {
@@ -632,6 +638,10 @@ hr.menuList {
 }
 .softDrakText {
   color: #7a7a7a;
+}
+.subTextSubject {
+  color: #7a7a7a;
+  font-size: 0.8em;
 }
 
 .leftTD {

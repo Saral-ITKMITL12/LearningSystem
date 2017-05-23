@@ -20,9 +20,12 @@
                     btn-save
                     @else
                     btn-unsave
-                    @endif
-                    @endif"
-                id="pageQuestion{{ $i }}" data-token="{{ csrf_token() }}">{{ $i }}
+                  @endif
+              @else
+                    btn-unsave
+              @endif "
+                id="pageQuestion{{ $i }}" data-token="{{ csrf_token() }}">
+                {{ $i }}
               </a>
 
                 <script type="text/javascript">

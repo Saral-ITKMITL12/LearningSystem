@@ -25,7 +25,7 @@
     @for($i = 1; $i <= $paginates->lastPage(); $i++)
       @foreach($resArray as $rkey => $resValue)
       @if($resValue['id'] == $value->id)
-      @if($resValue['answer'] == $i)
+      @if($resValue['answer'] == $qkey)
           checked=""
         @endif
       @endif
@@ -40,10 +40,7 @@
 @endforeach
 </div>
 
-<div class="col-md-12 text-center saveNext">
-  <button type="button" class="btn btn-gibson" name="button" id="saveQuiz" data-token="{{ csrf_token() }}">save</button>
-  <button type="button" class="btn btn-bulgreen" name="button" id="finishQuiz">Finish</button>
-</div>
+@include('students.list.finishQuiz')
 
 
 
