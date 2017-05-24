@@ -43,10 +43,10 @@ class QuizController extends Controller
           $day = $splitDateTime[0];
           $month = $splitDateTime[1];
           $year = $splitDate[0];
-          $time = $splitDate[1];
-          $hour = $time[0].$time[0];
-          $minute = $time[3].$time[4];
-          $dateTime = $day.'-'.$month.'-'.$year.' '.$time;
+          $hour = $time[0];
+          $minute = $time[1];
+          $dateTime = $day.'-'.$month.'-'.$year.' '.$hour.':'.$minute;
+
           $quizStartDateTime = Carbon::create($year, $month, $day, 10, $minute, 0, 'Asia/Bangkok');
 
 
@@ -57,17 +57,18 @@ class QuizController extends Controller
           $day = $splitDateTime[0];
           $month = $splitDateTime[1];
           $year = $splitDate[0];
-          $time = $splitDate[1];
-          $hour = $time[0].$time[0];
-          $minute = $time[3].$time[4];
-          $dateTime = $day.'-'.$month.'-'.$year.' '.$time;
+          $hour = $time[0];
+          $minute = $time[1];
+          $dateTime = $day.'-'.$month.'-'.$year.' '.$hour.':'.$minute;
+
           $quizExpireDateTime = Carbon::create($year, $month, $day, 10, $minute, 0, 'Asia/Bangkok');
 
           $now =  Carbon::now('Asia/Bangkok');
           //$now->gte($quizExpireDateTime)
 
-          if($now->gte($quizStartDateTime) && $now->lte($quizExpireDateTime))
-          $quizID_list[] = $quiz_value->id;
+          if($now->gte($quizStartDateTime) && $now->lte($quizExpireDateTime)){
+            $quizID_list[] = $quiz_value->id;
+          }
 
 
         }
@@ -80,11 +81,6 @@ class QuizController extends Controller
             'flash_notice' =>'System: ยังไม่มีแบบทดสอบในขณะนี้',
              'flash_type' => 'warning ']);
         }
-        // $date = $quizs[0]->start_date;
-        // $splitDateTime = explode('/', $date);
-        // $splitDate = preg_split('/\s+/', $date);
-        // //$now = Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')->toDateTimeString();
-        // dd($splitName);
 
         $data['quizs'] = $quizs;
         return view('students.users.quizIndex', $data);
